@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:migrate": "typeorm -d typeorm.config.js migration:run",
+    "db:generate": "typeorm -d typeorm.config.js migration:generate lib/database/migrations/Migration",
+    "db:revert": "typeorm -d typeorm.config.js migration:revert",
+    "db:show": "typeorm -d typeorm.config.js migration:show"
   },
   "dependencies": {
     "dotenv": "^17.2.4",
@@ -29,6 +33,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
