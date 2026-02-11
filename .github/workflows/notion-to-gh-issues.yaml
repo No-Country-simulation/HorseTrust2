@@ -1,0 +1,33 @@
+name: Migrar Historias de Usuario de Notion a GitHub Issues
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  create_issues:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Descargar Repo 
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Instalar Dependencias
+        run: pip install requests
+
+      - name: Ejecutar Script de Sincronización
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/notion_sync.py
