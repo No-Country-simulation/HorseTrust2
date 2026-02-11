@@ -9,3 +9,9 @@ updates:
     directory: "/horsetrust" # Location of package manifests
     schedule:
       interval: "daily"
+    
+    # Customize PR
+    pull-request-branch-name:
+      separator: "-"
+    assignees:
+      - "Phylip28"
