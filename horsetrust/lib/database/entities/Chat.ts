@@ -13,29 +13,29 @@ import { Message } from './Message';
 @Entity('chats')
 export class Chat {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id!: string;
 
-    @ManyToOne(() => User, (user) => user.initiated_chats, { onDelete: 'CASCADE' })
+    @ManyToOne('User', 'initiated_chats', { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'buyer_id' })
-    buyer: User;
+    buyer!: User;
 
     @Column({ type: 'uuid', name: 'buyer_id' })
-    buyer_id: string;
+    buyer_id!: string;
 
-    @ManyToOne(() => User, (user) => user.seller_chats, { onDelete: 'CASCADE' })
+    @ManyToOne('User', 'seller_chats', { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'seller_id' })
-    seller: User;
+    seller!: User;
 
     @Column({ type: 'uuid', name: 'seller_id' })
-    seller_id: string;
+    seller_id!: string;
 
     @Column({ type: 'boolean', default: true })
-    is_active: boolean;
+    is_active!: boolean;
 
     @CreateDateColumn()
-    created_at: Date;
+    created_at!: Date;
 
     // Relations
-    @OneToMany(() => Message, (message) => message.chat, { cascade: true })
-    messages: Message[];
+    @OneToMany('Message', 'chat', { cascade: true })
+    messages!: Message[];
 }

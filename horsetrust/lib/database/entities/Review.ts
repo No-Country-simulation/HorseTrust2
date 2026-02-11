@@ -12,35 +12,35 @@ import { User } from './User';
 @Entity('reviews')
 export class Review {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id!: string;
 
-    @ManyToOne(() => Sale, (sale) => sale.reviews, { onDelete: 'CASCADE' })
+    @ManyToOne('Sale', 'reviews', { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'sale_id' })
-    sale: Sale;
+    sale!: Sale;
 
     @Column({ type: 'uuid', name: 'sale_id' })
-    sale_id: string;
+    sale_id!: string;
 
-    @ManyToOne(() => User, (user) => user.reviews_received, { onDelete: 'CASCADE' })
+    @ManyToOne('User', 'reviews_received', { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'seller_id' })
-    seller: User;
+    seller!: User;
 
     @Column({ type: 'uuid', name: 'seller_id' })
-    seller_id: string;
+    seller_id!: string;
 
-    @ManyToOne(() => User, (user) => user.reviews_given, { onDelete: 'CASCADE' })
+    @ManyToOne('User', 'reviews_given', { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'buyer_id' })
-    buyer: User;
+    buyer!: User;
 
     @Column({ type: 'uuid', name: 'buyer_id' })
-    buyer_id: string;
+    buyer_id!: string;
 
     @Column({ type: 'int' })
-    rating: number;
+    rating!: number;
 
     @Column({ type: 'text', nullable: true })
-    comment: string | null;
+    comment?: string | null;
 
     @CreateDateColumn()
-    created_at: Date;
+    created_at!: Date;
 }

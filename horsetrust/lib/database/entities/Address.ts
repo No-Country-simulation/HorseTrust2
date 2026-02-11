@@ -12,33 +12,32 @@ import { User } from './User';
 @Entity('addresses')
 export class Address {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id!: string;
 
-    @ManyToOne(() => User, (user) => user.addresses, { onDelete: 'CASCADE' })
+    @ManyToOne('User', 'addresses', {
+        onDelete: 'CASCADE',
+    })
     @JoinColumn({ name: 'user_id' })
-    user: User;
-
-    @Column({ type: 'uuid', name: 'user_id' })
-    user_id: string;
+    user!: User;
 
     @Column({ type: 'varchar' })
-    country: string;
+    country!: string;
 
     @Column({ type: 'varchar', nullable: true })
-    province: string | null;
+    province?: string | null;
 
     @Column({ type: 'varchar' })
-    city: string;
+    city!: string;
 
     @Column({ type: 'varchar' })
-    street: string;
+    street!: string;
 
     @Column({ type: 'varchar', nullable: true })
-    postal_code: string | null;
+    postal_code?: string | null;
 
     @CreateDateColumn()
-    created_at: Date;
+    created_at!: Date;
 
     @UpdateDateColumn()
-    updated_at: Date;
+    updated_at!: Date;
 }

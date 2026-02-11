@@ -14,39 +14,39 @@ import { Review } from './Review';
 @Entity('sales')
 export class Sale {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id!: string;
 
-    @ManyToOne(() => Horse, (horse) => horse.sales, { onDelete: 'CASCADE' })
+    @ManyToOne('Horse', 'sales', { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'horse_id' })
-    horse: Horse;
+    horse!: Horse;
 
     @Column({ type: 'uuid', name: 'horse_id' })
-    horse_id: string;
+    horse_id!: string;
 
-    @ManyToOne(() => User, (user) => user.sales_sold, { onDelete: 'CASCADE' })
+    @ManyToOne('User', 'sales_sold', { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'seller_id' })
-    seller: User;
+    seller!: User;
 
     @Column({ type: 'uuid', name: 'seller_id' })
-    seller_id: string;
+    seller_id!: string;
 
-    @ManyToOne(() => User, (user) => user.sales_purchased, { onDelete: 'CASCADE' })
+    @ManyToOne('User', 'sales_purchased', { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'buyer_id' })
-    buyer: User;
+    buyer!: User;
 
     @Column({ type: 'uuid', name: 'buyer_id' })
-    buyer_id: string;
+    buyer_id!: string;
 
     @Column({ type: 'integer' })
-    price: number;
+    price!: number;
 
     @Column({ type: 'timestamp' })
-    completed_at: Date;
+    completed_at!: Date;
 
     @CreateDateColumn()
-    created_at: Date;
+    created_at!: Date;
 
     // Relations
-    @OneToMany(() => Review, (review) => review.sale, { cascade: true })
-    reviews: Review[];
+    @OneToMany('Review', 'sale', { cascade: true })
+    reviews!: Review[];
 }
