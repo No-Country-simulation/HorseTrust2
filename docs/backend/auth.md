@@ -66,3 +66,30 @@ INTERNAL_ERROR	500	Error inesperado
 #### Proteccion de Rutas
 
 Ejemplo en lib\auth\get-user-from-token.ts
+
+
+
+### logout
+
+POST /api/v1/auth/logout
+
+Elimina la cookie auth_token.
+
+
+Response 200
+
+```json
+{
+  "success": true,
+  "message": "Sesión cerrada correctamente",
+  "data": null
+}
+
+```
+
+
+#### Test
+
+Ruta de teest para verificar si el usuario tiene un unicio de session
+
+GET /api/v1/auth/test

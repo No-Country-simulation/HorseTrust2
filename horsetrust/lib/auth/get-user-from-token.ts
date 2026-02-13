@@ -8,7 +8,7 @@ export interface AuthUser {
 
 export async function getAuthUser(): Promise<AuthUser | null> {
   const cookieStore = await cookies();
-  const token = cookieStore.get("auth_token")?.value;
+  const token = cookieStore.get("token")?.value;
 
   if (!token) return null;
 
