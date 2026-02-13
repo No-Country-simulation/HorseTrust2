@@ -12,7 +12,7 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       dotenv:
-      specifier: ^17.3.1
+        specifier: ^17.3.1
         version: 17.3.1
       jsonwebtoken:
         specifier: ^9.0.3
