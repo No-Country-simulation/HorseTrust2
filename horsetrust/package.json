@@ -6,17 +6,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:migrate": "typeorm -d typeorm.config.js migration:run",
+    "db:generate": "typeorm -d typeorm.config.js migration:generate lib/database/migrations/Migration",
+    "db:revert": "typeorm -d typeorm.config.js migration:revert",
+    "db:show": "typeorm -d typeorm.config.js migration:show"
   },
   "dependencies": {
     "@heroui/react": "^2.8.8",
     "dotenv": "^17.2.4",
     "framer-motion": "^12.34.0",
+    "bcrypt": "^6.0.0",    
+    "jsonwebtoken": "^9.0.3",
     "next": "16.1.6",
     "pg": "^8.18.0",
-    "pnpm": "^10.29.2",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
+    "pnpm": "^10.29.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "react-hook-form": "^7.71.1",
     "reflect-metadata": "^0.2.2",
     "typeorm": "^0.3.28",
@@ -25,12 +31,15 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/bcrypt": "^6.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

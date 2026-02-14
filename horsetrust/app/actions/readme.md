@@ -1,2 +1,0 @@
-# Ruta API BackEnd 
-
