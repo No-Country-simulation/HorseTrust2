@@ -9,7 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@heroui/react": "^2.8.8",
     "dotenv": "^17.2.4",
+    "framer-motion": "^12.34.0",
     "next": "16.1.6",
     "pg": "^8.18.0",
     "pnpm": "^10.29.2",
