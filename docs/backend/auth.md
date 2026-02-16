@@ -6,7 +6,7 @@
 POST /api/v1/auth/register
 
 ```json
-Rquest Body 
+Rquest Body
 {
   "email": "user@example.com",
   "password": "Password123"
@@ -14,7 +14,7 @@ Rquest Body
 
 ```
 
-#### Response 201 
+#### Response 201
 
 ```json
 {

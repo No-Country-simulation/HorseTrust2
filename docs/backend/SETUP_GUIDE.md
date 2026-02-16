@@ -6,7 +6,7 @@ lib/database/
 ├── entities/
 │   ├── User.ts              ✅ Usuarios
 │   ├── Address.ts           ✅ Direcciones
-│   ├── Horse.ts             ✅ Caballos  
+│   ├── Horse.ts             ✅ Caballos
 │   ├── Document.ts          ✅ Documentos
 │   ├── Chat.ts              ✅ Chats
 │   ├── Message.ts           ✅ Mensajes
@@ -89,9 +89,9 @@ import { User } from '@/lib/database/entities';
 
 export async function createUser(email: string) {
   const dataSource = await getDataSource();
-  const user = dataSource.getRepository(User).create({ 
-    email, 
-    password: 'hash_aqui' 
+  const user = dataSource.getRepository(User).create({
+    email,
+    password: 'hash_aqui'
   });
   return await dataSource.getRepository(User).save(user);
 }
@@ -190,4 +190,3 @@ pnpm start        # Inicia servidor producción
 ---
 
 **¿Preguntas?** Revisa la documentación completa en [TYPEORM_SETUP.md](TYPEORM_SETUP.md)
-

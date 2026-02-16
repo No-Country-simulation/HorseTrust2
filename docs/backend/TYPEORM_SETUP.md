@@ -33,4 +33,3 @@ Enums definidos:
 Añadidas las opciones necesarias para TypeORM:
 - `experimentalDecorators: true`
 - `emitDecoratorMetadata: true`
-

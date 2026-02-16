@@ -12,9 +12,9 @@ permissions:
 jobs:
   create_issues:
     runs-on: ubuntu-latest
-  
+
     steps:
-      - name: Descargar Repo 
+      - name: Descargar Repo
         uses: actions/checkout@v4
 
       - name: Configurar Python
