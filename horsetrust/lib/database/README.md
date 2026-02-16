@@ -79,7 +79,7 @@ export async function GET() {
     const dataSource = await getDataSource();
     const userRepository = dataSource.getRepository(User);
     const users = await userRepository.find();
-    
+
     return Response.json(users);
   } catch (error) {
     return Response.json({ error: 'Error fetching users' }, { status: 500 });
@@ -121,7 +121,7 @@ import { User } from '@/lib/database/entities';
 export async function createUser(email: string, password: string) {
   const dataSource = await getDataSource();
   const userRepository = dataSource.getRepository(User);
-  
+
   const user = userRepository.create({ email, password });
   return await userRepository.save(user);
 }

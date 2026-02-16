@@ -30,7 +30,7 @@ export async function getAuthUser(): Promise<AuthUser | null> {
 //   );
 // }
 
-// Proteccion para rutas del frontend  
+// Proteccion para rutas del frontend
 
 // import { redirect } from "next/navigation";
 // import { getAuthUser } from "@/lib/auth/get-auth-user";
@@ -46,7 +46,7 @@ export async function getAuthUser(): Promise<AuthUser | null> {
 // }
 
 
-// Proteccion Middleware 
+// Proteccion Middleware
 
 // middleware.ts
 // import { NextResponse } from "next/server";

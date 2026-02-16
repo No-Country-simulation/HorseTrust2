@@ -21,11 +21,11 @@ on:
       - '.github/ISSUE_TEMPLATE/**'
       - 'docs/**'
       - '.pre-commit-config.yaml'
-      
+
   pull_request:
     branches: [ "main" ]
     paths-ignore: *shared_paths
-    
+
   schedule:
     - cron: '31 0 * * 4'
 
