@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat} from "next/font/google";
+import { Montserrat, Cormorant_Garamond} from "next/font/google";
 import "./globals.css";
 import NavbarContainer from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
@@ -7,6 +7,11 @@ import { Providers } from "./providers";
 
 const montserratSans = Montserrat({
   variable: "--font-montserrat-sans",
+  subsets: ["latin"],
+});
+
+const cormorantSans = Cormorant_Garamond({
+  variable: "--font-cormorant-sans",
   subsets: ["latin"],
 });
 
@@ -23,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserratSans.variable} antialiased`}
+        className={`${montserratSans.variable} ${cormorantSans.variable} antialiased font-sans bg-black text-cream overflow-x-hidden`}
       >
         <Providers>
             <NavbarContainer/>

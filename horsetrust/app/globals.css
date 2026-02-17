@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+:root {
+    --color-cream: #EEEEFF;
+    --color-gold: #B5BA72;
+    --color-terracota: #764134;
+    --color-teal: #3E6259;
+}
+
 /*Reseteo*/
 *,
 *::before,
@@ -53,13 +60,6 @@ ol {
     padding: 0;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-button {
-    background: none;
-    border: none;
-    cursor: pointer;
+.navGradiente {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
 }
