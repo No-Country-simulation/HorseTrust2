@@ -13,14 +13,11 @@
     "db:show": "typeorm -d typeorm.config.js migration:show"
   },
   "dependencies": {
-    "@heroui/react": "^2.8.8",
     "bcrypt": "^6.0.0",
-    "dotenv": "^17.2.4",
-    "framer-motion": "^12.34.0",
     "jsonwebtoken": "^9.0.3",
     "next": "16.1.6",
     "pg": "^8.18.0",
-    "pnpm": "^10.29.3",
+    "pnpm": "^10.30.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-hook-form": "^7.71.1",
