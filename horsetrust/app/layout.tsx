@@ -3,7 +3,6 @@ import { Montserrat, Cormorant_Garamond} from "next/font/google";
 import "./globals.css";
 import NavbarContainer from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
-import { Providers } from "./providers";
 
 const montserratSans = Montserrat({
   variable: "--font-montserrat-sans",
@@ -28,13 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserratSans.variable} ${cormorantSans.variable} antialiased font-sans bg-black text-cream overflow-x-hidden`}
+        className={`${montserratSans.variable} ${cormorantSans.variable} antialiased font-sans bg-black text-[var(--color-cream)] overflow-x-hidden`}
       >
-        <Providers>
             <NavbarContainer/>
-            {children}
+            <main className="pt-[80px]">
+                {children}
+            </main>
             <Footer/>
-        </Providers>
       </body>
     </html>
   );

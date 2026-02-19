@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
 :root {
-    --color-cream: #EEEEFF;
-    --color-gold: #B5BA72;
-    --color-terracota: #764134;
-    --color-teal: #3E6259;
+    --color-cream: 238 238 255;
+    --color-gold: 181 186 114;
+    --color-terracota: 118 65 52;
+    --color-teal: 62 98 89;
+
 }
+
 
 /*Reseteo*/
 *,
@@ -62,4 +64,55 @@ ol {
 
 .navGradiente {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 1s ease forwards;
+}
+
+.gradientShift {
+    animation: gradientShift 20s ease infinite;
+}
+
+.fontCormorant {
+    font-family: 'Cormorant_Garamond';
+}
+
+.fontMontserrat {
+    font-family: 'Montserrat';
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
