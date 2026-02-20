@@ -1,6 +1,7 @@
 import { CgFacebook } from "react-icons/cg";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Footer(){
     const stylesItems = "text-[rgb(var(--color-cream)/0.7)] no-underline text-sm font-light transition-colors duration-300 hover:text-[rgb(var(--color-cream))]";
@@ -12,9 +13,9 @@ export default function Footer(){
         <footer className="bg-black px-8 lg:px-16 py-16 pb-8 border-t border-[rgb(var(--color-gold)/0.2)]">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-12 pb-4">
                 <div>
-                    <div className="fontCormorant text-2xl tracking-[0.25em] text-[rgb(var(--color-gold))] mb-4 uppercase">
+                    <Link href="/" className="fontCormorant text-2xl tracking-[0.25em] text-[rgb(var(--color-gold))] mb-4 uppercase">
                         Horse Trust
-                    </div>
+                    </Link>
                     <p className="text-sm text-[rgb(var(--color-cream)/0.6)] leading-relaxed font-light">
                         La plataforma de confianza que conecta al mundo ecuestre. Verificación, transparencia y seguridad en cada transacción.
                     </p>
@@ -24,10 +25,29 @@ export default function Footer(){
                         Plataforma
                     </div>
                     <ul className="space-y-3 list-none">
-                        <li><a href="#" className={stylesItems}>Explorar Caballos</a></li>
-                        <li><a href="#" className={stylesItems}>Cómo Funciona</a></li>
-                        <li><a href="#" className={stylesItems}>Verificación</a></li>
-                        <li><a href="#" className={stylesItems}>Contacto</a></li>
+                        <li>
+                            <Link href="/galery" className={stylesItems}>
+                                Explorar Caballos
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link href="/como-funciona" className={stylesItems}>
+                                Cómo Funciona
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link href="/login" className={stylesItems}>
+                                Ingresar
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link href="/contact" className={stylesItems}>
+                                Contacto
+                            </Link>
+                        </li>
                     </ul>
                 </div>
                 <div>
@@ -48,7 +68,6 @@ export default function Footer(){
                     <ul className="space-y-3 list-none">
                         <li><a href="mailto:info@elite-equestrian.com" className={stylesItems}>info@horse-trust.com</a></li>
                         <li><a href="tel:+123456789" className={stylesItems}>+1 234 567 89</a></li>
-                        <li><a href="#" className={stylesItems}>Ubicación</a></li>
                     </ul>
                 </div>
             </div>
@@ -56,13 +75,13 @@ export default function Footer(){
             <div className="max-w-7xl mx-auto pt-4 border-t border-[rgb(var(--color-cream)/0.1)] flex flex-col md:flex-row justify-between items-center text-xs text-[rgb(var(--color-cream)/0.5)] gap-4">
                 <div>© 2026 Horse Trust. Todos los derechos reservados.</div>
                 <div className="flex gap-8">
-                    <a href="#" className={stylesRedes}>
+                    <a href="https://instagram.com" target="_blank" className={stylesRedes}>
                     <FaInstagram />
                     </a>
-                    <a href="#" className={stylesRedes}>
+                    <a href="https://facebook.com" target="_blank" className={stylesRedes}>
                         <CgFacebook />
                     </a>
-                    <a href="#" className={stylesRedes}>
+                    <a href="https://youtube.com" target="_blank" className={stylesRedes}>
                         <FaYoutube/>
                     </a>
                 </div>
