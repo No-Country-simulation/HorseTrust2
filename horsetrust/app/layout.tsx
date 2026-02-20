@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Montserrat, Cormorant_Garamond} from "next/font/google";
 import "./globals.css";
-import NavbarContainer from "@/components/layouts/Navbar";
-import Footer from "@/components/layouts/Footer";
+//import NavbarContainer from "@/app/components/layouts/Navbar";
+import { NavbarContainer } from "@/app/components/layouts/Navbar";
+import Footer from "@/app/components/layouts/Footer";
 
 const montserratSans = Montserrat({
   variable: "--font-montserrat-sans",

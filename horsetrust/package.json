@@ -13,7 +13,9 @@
     "db:show": "typeorm -d typeorm.config.js migration:show"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "bcrypt": "^6.0.0",
+    "dotenv": "^17.3.1",
     "jsonwebtoken": "^9.0.3",
     "next": "16.1.6",
     "pg": "^8.18.0",
