@@ -1,3 +1,4 @@
+import Link from "next/dist/client/link"
 import Image from "next/image"
 
 
@@ -16,11 +17,17 @@ export default function NavbarContainer() {
             <li><a href="" className={stylesNavItems}>Vendedores<span className={stylesSpan}></span></a></li>
             <li><a href="" className={stylesNavItems}>Cómo funciona<span className={stylesSpan}></span></a></li>
             <li><a href="" className={stylesNavItems}>Contacto<span className={stylesSpan}></span></a></li>
-            <li><a href="" className={stylesNavItems}>Login<span className={stylesSpan}></span></a></li>
+            <li><a href="/login" className={stylesNavItems}>Login<span className={stylesSpan}></span></a></li>
         </ul>
+
         
         <button className="px-5 md:px-8 py-3 bg-transparent border border-[rgb(var(--color-gold))] text-[rgb(var(--color-gold))] text-xs uppercase cursor-pointer transition-all duration-300 hover:bg-[rgb(var(--color-gold))] hover:text-black">Publicar</button>
             
+
+        <Link href="/register">
+        <button className="px-5 md:px-8 py-3 bg-transparent border border-[rgb(var(--color-gold))] text-[rgb(var(--color-gold))] text-xs uppercase cursor-pointer transition-all duration-300 hover:bg-[rgb(var(--color-gold))] hover:text-black">Registrate</button>
+        </Link>
+
     </nav>
   )
 }
