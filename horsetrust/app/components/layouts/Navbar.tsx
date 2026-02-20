@@ -16,7 +16,7 @@ export default function NavbarContainer() {
             <li><a href="" className={stylesNavItems}>Galería<span className={stylesSpan}></span></a></li>
             <li><a href="" className={stylesNavItems}>Nosotros<span className={stylesSpan}></span></a></li>
             <li><a href="" className={stylesNavItems}>Contacto<span className={stylesSpan}></span></a></li>
-            <li><a href="" className={stylesNavItems}>Login<span className={stylesSpan}></span></a></li>
+            <li><a href="/login" className={stylesNavItems}>Login<span className={stylesSpan}></span></a></li>
         </ul>
         <Link href="/register">
         <button className="px-5 md:px-8 py-3 bg-transparent border border-[rgb(var(--color-gold))] text-[rgb(var(--color-gold))] text-xs uppercase cursor-pointer transition-all duration-300 hover:bg-[rgb(var(--color-gold))] hover:text-black">Registrate</button>
