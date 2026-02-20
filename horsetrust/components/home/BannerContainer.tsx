@@ -22,7 +22,7 @@ export default function BannerContainer() {
         </div>
 
         <div className="flex w-full justify-center items-center animate-fade-in-up text-[rgb(var(--color-cream))]">
-            <Image src="/images/banner.png" alt="Caballo mirando de costado" width={500} height={500} className=" hidden s:block animate-fade-in-up "/>         
+            <Image src="/images/banner.jpg" alt="Caballo mirando de costado" width={440} height={440} className=" hidden s:block animate-fade-in-up "/>         
             <h1 className="fontCormorant px-4 text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-[0.125em] leading-tight uppercase opacity-0 animate-fade-in-up" style={animacion(0.6)} >
             Elegancia en Movimiento
             </h1>
