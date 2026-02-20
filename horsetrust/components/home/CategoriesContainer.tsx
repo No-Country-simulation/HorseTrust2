@@ -4,8 +4,8 @@ export default function CategoriesContainer(){
     return (
         <section className="py-32 px-8 lg:px-16 bg-black relative reveal">
             <div className="text-center mb-20 pb-10">
-                <div className="text-xs tracking-[0.25em] text-[rgb(var(--color-gold))] mb-4 uppercase font-medium">
-                    Nuestras Categorías
+                <div className="text-xs tracking-[0.25em] text-[rgb(var(--color-gold))] mb-5 pb-2 uppercase font-medium">
+                    Categorías Disponibles
                 </div>
                 <h2 className="fontCormorant text-5xl lg:text-6xl font-normal tracking-wide text-[rgb(var(--color-cream))] uppercase">
                     Encontrá tu

@@ -16,28 +16,28 @@ export default function Footer(){
                         Horse Trust
                     </div>
                     <p className="text-sm text-[rgb(var(--color-cream)/0.6)] leading-relaxed font-light">
-                        Dedicados a conectar clientes apasionados con caballos excepcionales. Excelencia en cada paso.
+                        La plataforma de confianza que conecta al mundo ecuestre. Verificación, transparencia y seguridad en cada transacción.
                     </p>
                 </div>
                 <div>
                     <div className={stylesTitles}>
-                        Explorar
+                        Plataforma
                     </div>
                     <ul className="space-y-3 list-none">
-                        <li><a href="#" className={stylesItems}>Caballos en Venta</a></li>
-                        <li><a href="#" className={stylesItems}>Proceso de Verificación</a></li>
-                        <li><a href="#" className={stylesItems}>Galería</a></li>
+                        <li><a href="#" className={stylesItems}>Explorar Caballos</a></li>
+                        <li><a href="#" className={stylesItems}>Cómo Funciona</a></li>
+                        <li><a href="#" className={stylesItems}>Verificación</a></li>
                         <li><a href="#" className={stylesItems}>Contacto</a></li>
                     </ul>
                 </div>
                 <div>
                     <div className={stylesTitles}>
-                        Servicios
+                        Vendedores
                     </div>
                     <ul className="space-y-3 list-none">
-                        <li><a href="#" className={stylesItems}>Publicaciones</a></li>
+                        <li><a href="#" className={stylesItems}>Publicar Caballo</a></li>
                         <li><a href="#" className={stylesItems}>Contacto directo</a></li>
-                        <li><a href="#" className={stylesItems}>Verificación</a></li>
+                        <li><a href="#" className={stylesItems}>Guía del Vendedor</a></li>
                         <li><a href="#" className={stylesItems}>Asesoramiento</a></li>
                     </ul>
                 </div>

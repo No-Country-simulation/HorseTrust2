@@ -5,17 +5,17 @@ export default function ContactSection(){
             
             <div className="relative z-10">
                 <h2 className="fontCormorant text-[rgb(var(--color-cream))] text-5xl lg:text-7xl font-light tracking-[0.25em] mb-8 uppercase">
-                    Comenzá tu
+                    ¿Tenés un Caballo
                     <br />
-                    Legado Ecuestre
+                    para Vender?
                 </h2>
                 <p className="fontMontserrat text-lg font-light tracking-wide max-w-full mx-auto py-5 pb-10 mb-12 leading-relaxed text-[rgb(var(--color-cream)/0.8)]">
-                    Agendá una visita privada a nuestras instalaciones y conocé personalmente 
+                    Publicá en nuestra plataforma y conectá con compradores serios.  
                     <br />
-                    la colección más exclusiva de caballos verificados.
+                    Verificamos tu perfil y brindamos seguridad en cada transacción.
                 </p>
                 <a href="#contacto" className="inline-block px-16 py-6 bg-[rgb(var(--color-gold))] text-black text-xs tracking-[0.1875em] uppercase no-underline transition-all duration-400 font-medium hover:bg-[rgb(var(--color-cream))] hover:-translate-y-2 hover:shadow-2xl" style={{boxShadow: "0 10px 30px rgba(181, 186, 114, 0);"}}>
-                    Agendar Visita
+                    Publicar Ahora
                 </a>
             </div>
         </section>
