@@ -1,0 +1,9 @@
+.categoryImage {
+    filter: grayscale(100%) brightness(0.4) !important;
+    transition: all 0.4s ease !important;
+}
+
+.categoryCard:hover .category-image {
+    filter: grayscale(100%) brightness(0.6) !important;
+    transform: scale(1.05) !important;
+}
