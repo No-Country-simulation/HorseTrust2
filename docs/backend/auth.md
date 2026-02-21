@@ -36,7 +36,8 @@ Request Body
 ```json
 {
   "email": "user@example.com",
-  "password": "Password123"
+  "password": "Password123",
+  
 }
 ```
 
@@ -48,7 +49,11 @@ Response 200
   "message": "Login correcto",
   "data": {
     "id": "uuid",
-    "email": "user@example.com"
+    "email": "user@example.com",
+    "avatar_url":"example/expalme.png",
+    "first_name":"Jose",
+    "last_name":"Perez",
+    "role":"user"
   }
 }
 

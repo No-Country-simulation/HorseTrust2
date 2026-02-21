@@ -5,7 +5,7 @@ import { successResponse } from '@/lib/http/response-handler';
 import { withErrorHandler } from '@/lib/http/with-error-handler';
 import bcrypt from "bcrypt";
 import { cookies } from 'next/headers';
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const POST = withErrorHandler(async (req: NextRequest) => {
   const body = await req.json();
@@ -15,7 +15,7 @@ export const POST = withErrorHandler(async (req: NextRequest) => {
   const user = await repo.findOneBy({ email: body.email });
 
   if (!user) {
-    return successResponse(
+    return NextResponse.json(
       { message: 'Usuario no encontrado', code: 'USER_NOT_FOUND' , statusCode: 404},
     );
   }
@@ -23,14 +23,15 @@ export const POST = withErrorHandler(async (req: NextRequest) => {
   const isValid = await bcrypt.compare(body.password, user.password);
 
   if (!isValid) {
-    return successResponse(
+    return NextResponse.json(
       { message: 'Contraseña incorrecta', code: 'INVALID_PASSWORD' , statusCode: 401},
     );
   }
 
-  const token = signToken( {
+  const token = signToken({
     userId: user.id,
     email: user.email,
+    role: user.role,
   })
 
   ;(await cookies()).set('token', token, {
@@ -42,7 +43,14 @@ export const POST = withErrorHandler(async (req: NextRequest) => {
   });
 
   return successResponse(
-    { id: user.id, email: user.email },
+    { 
+      id: user.id, 
+      email: user.email,
+      avatar_url: user.avatar_url,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      role: user.role,
+    },
     'Login correcto',
     200
   );

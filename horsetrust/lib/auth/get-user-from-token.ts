@@ -4,6 +4,7 @@ import { verifyToken } from "./jwt";
 export interface AuthUser {
   userId: string;
   email: string;
+  role: string;
 }
 
 export async function getAuthUser(): Promise<AuthUser | null> {

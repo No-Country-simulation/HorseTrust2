@@ -121,6 +121,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { ApiResponse } from "@/lib/http/ApiResponse";
 
 const registerSchema = z.object({
   first_name: z.string().min(1, "El nombre es obligatorio"),
@@ -161,15 +162,15 @@ export default function RegisterPage() {
         body: JSON.stringify(data),
       });
 
-      const result = await res.json();
+      const result: ApiResponse = await res.json();
 
       if (!res.ok) {
-        throw new Error(result.error || "Hubo un fallo en el registro");
+        throw new Error(result.message || "Hubo un fallo en el registro");
       }
 
       router.push("/login");
-    } catch (err: any) {
-      setErrorMsg(err.message || "Error de red. Inténtalo de nuevo.");
+    } catch (err: unknown) {
+      setErrorMsg((err as Error).message || "Error de red. Inténtalo de nuevo.");
     } finally {
       setIsLoading(false);
     }
