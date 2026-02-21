@@ -7,18 +7,17 @@ import { errorResponse, successResponse } from "@/lib/http/response-handler"
 import { withErrorHandler } from "@/lib/http/with-error-handler"
 import { NextRequest } from "next/server"
 
-
 interface RouteContext {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export const GET = withErrorHandler(async (
   _req: NextRequest,
-  { params }: RouteContext
+  context: RouteContext
 ) => {
-  const { id } = await  params
+  const { id } = await  context.params
 
   if (!id) {
     return errorResponse({

@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { ApiResponse } from "@/lib/http/ApiResponse";
+import { SessionUser, useSession } from "@/store/authSession";
 
 const loginSchema = z.object({
     email: z.string().email("Email inválido").min(1, "El email es obligatorio"),
@@ -18,13 +20,13 @@ export default function LoginPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const router = useRouter();
+    const setUser = useSession((state) => state.setUser);
 
-    
     const { register, handleSubmit, formState: { errors }, getValues } = useForm<LoginValues>({
         resolver: zodResolver(loginSchema),
     });
 
-   
+
     const onSubmit = async (data: LoginValues) => {
         setIsLoading(true);
         setErrorMsg(null);
@@ -36,22 +38,16 @@ export default function LoginPage() {
                 body: JSON.stringify(data),
             });
 
-            const result = await res.json();
+            const result: ApiResponse<SessionUser> = await res.json();
 
-            if (!res.ok) {
-                throw new Error(result.error || "Credenciales incorrectas");
+            if (!res.ok || !result.ok) {
+                throw new Error(result.message);
             }
-
-
-            if (result.token) {
-                localStorage.setItem("token", result.token);
-            }
-
-           
+            setUser(result.data!);
             router.push("/");
             router.refresh(); // actualiza el estado del servidor
-        } catch (err: any) {
-            setErrorMsg(err.message || "Error de red. Inténtalo de nuevo.");
+        } catch (err: unknown) {
+            setErrorMsg((err as Error).message || "Error de red. Inténtalo de nuevo.");
         } finally {
             setIsLoading(false);
         }
@@ -93,7 +89,7 @@ export default function LoginPage() {
                 )}
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                   
+
                     <div className="space-y-1">
                         <input
                             {...register("email")}
@@ -104,7 +100,7 @@ export default function LoginPage() {
                         {errors.email && <p className="text-red-500 text-[10px] ml-1">{errors.email.message}</p>}
                     </div>
 
-                    
+
                     <div className="space-y-1">
                         <input
                             {...register("password")}

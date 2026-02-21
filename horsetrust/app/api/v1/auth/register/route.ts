@@ -1,7 +1,7 @@
 import { User } from "@/lib/database/entities/User";
 import bcrypt from "bcrypt";
 import { withErrorHandler } from "@/lib/http/with-error-handler";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { successResponse } from "@/lib/http/response-handler";
 import { getRepository } from "@/lib/database/get-repository";
 
@@ -12,6 +12,15 @@ export const POST = withErrorHandler(async (req: NextRequest) => {
   const repo = await getRepository(User);
 
   const hashedPassword = await bcrypt.hash(body.password, 10);
+
+  // Busca si el email ya existe
+  const existingUser = await repo.findOne({ where: { email: body.email } });
+  if (existingUser) {
+    return NextResponse.json(
+      { message: "El email ya está registrado" },
+      { status: 400 }
+    );
+  }
 
   const user = repo.create({
     email: body.email,
