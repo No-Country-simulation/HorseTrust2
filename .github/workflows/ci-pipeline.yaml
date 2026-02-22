@@ -1,0 +1,36 @@
+name: Docker CI Pipeline
+
+on:
+  push:
+    branches: [main]
+    paths: &shared_paths 
+      # Rutas Incluidas
+      - ".github/workflows/ci-pipeline.yaml"
+      - "horsetrust/Dockerfile"
+      - "docker-compose.yaml"
+      - "horsetrust/**"
+
+      # Rutas Excluidas
+      - "!**.md"
+      - "!horsetrust/.env.example"
+
+  pull_request:
+    branches: [main]
+    paths: *shared_paths
+
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  call-docker-build:
+    permissions:
+      contents: read
+      packages: write
+
+    uses: phylip28/gha-workflows/.github/workflows/docker-ghcr.yaml@trunk
+    with:
+      services: '["horsetrust"]'
+    secrets: inherit
