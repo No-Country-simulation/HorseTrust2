@@ -1,7 +1,8 @@
-import os
-import requests
-import subprocess
 import json
+import os
+import subprocess
+
+import requests
 
 NOTION_TOKEN = os.getenv("NOTION_TOKEN")
 DATABASE_ID = os.getenv("NOTION_DATABASE_ID")
