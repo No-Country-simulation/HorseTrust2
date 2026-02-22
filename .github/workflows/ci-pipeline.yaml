@@ -3,7 +3,8 @@ name: Docker CI Pipeline
 on:
   push:
     branches: [main]
-    paths: &shared_paths # Rutas Incluidas
+    paths: &shared_paths 
+      # Rutas Incluidas
       - ".github/workflows/ci-pipeline.yaml"
       - "horsetrust/Dockerfile"
       - "docker-compose.yaml"
@@ -29,8 +30,7 @@ jobs:
       contents: read
       packages: write
 
-    runs-on: ubuntu-latest
-    uses: Phylip28/gha-workflows/.github/workflows/docker-ghcr.yaml@trunk
+    uses: phylip28/gha-workflows/.github/workflows/docker-ghcr.yaml@trunk
     with:
       services: '["app"]'
     secrets: inherit
