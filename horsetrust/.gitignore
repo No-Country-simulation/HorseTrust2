@@ -36,6 +36,9 @@ yarn-error.log*
 # Permitir subir .env.example
 !.env.example
 
+# uploads
+/uploads
+
 # vercel
 .vercel
 

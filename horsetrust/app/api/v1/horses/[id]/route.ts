@@ -185,7 +185,7 @@ export const PATCH = withErrorHandler(async (
       relations: ["owner"],
     })
 
-    return successResponse(updatedHorse, "Caballo actualizado correctamente", 200)
+    return successResponse(null, "Caballo actualizado correctamente", 200)
 })
 
 // DELETE

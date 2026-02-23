@@ -7,7 +7,7 @@ import {
     ManyToOne,
     JoinColumn,
 } from 'typeorm';
-import { TypeDocument, Category, DocumentPurpose } from '../enums';
+import { TypeDocument, Category, DocumentPurpose, ExamType, ExamResult } from '../enums';
 import { User } from './User';
 import { Horse } from './Horse';
 
@@ -41,6 +41,21 @@ export class Document {
 
     @Column({ type: 'varchar' })
     url!: string;
+
+    @Column({ type: 'varchar' })
+    public_id!: string;
+
+    @Column({ type: 'timestamp', nullable: true })
+    issued_at?: Date | null;
+
+    @Column({ type: 'varchar', nullable: true })
+    vet_name?: string | null;
+
+    @Column({ type: 'enum', enum: ExamType, nullable: true })
+    exam_type?: ExamType | null;
+
+    @Column({ type: 'enum', enum: ExamResult, nullable: true })
+    exam_result?: ExamResult | null;
 
     @Column({ type: 'boolean', default: false })
     verified!: boolean;

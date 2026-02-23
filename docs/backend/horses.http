@@ -1,0 +1,58 @@
+@HttpFiles_HotAddress = http://localhost:3000/api/v1
+@IdCaballo = 94293ba1-6e96-447f-aafb-d218185bc1b8
+
+### ===============================
+### HORSE MANAGEMENT
+### ===============================
+
+### Registrar un Caballo
+
+POST {{HttpFiles_HotAddress}}/horses
+Accept: application/json
+
+{
+    "name": "Lightning2",
+    "age": 5,
+    "sex": "male",
+    "discipline":"racing",
+    "breed":"Thoroughbred"
+}
+
+### Ver Listado de mis Caballos
+
+GET {{HttpFiles_HotAddress}}/me/horses
+
+### Listar Caballos for sale
+
+GET {{HttpFiles_HotAddress}}/horses?status=for_sale
+Accept: application/json
+
+### Listar Caballos vendidos
+GET {{HttpFiles_HotAddress}}/horses?status=sold
+Accept: application/json
+
+### Listar Caballos Reselvados
+GET {{HttpFiles_HotAddress}}/horses?status=reserved
+Accept: application/json
+
+
+### Ver detalles de un caballo
+
+
+GET {{HttpFiles_HotAddress}}/horses/{{IdCaballo}}
+Accept: application/json
+
+
+### Actualizar Detalles de un Caballo
+PATCH {{HttpFiles_HotAddress}}/horses/{{IdCaballo}}
+Accept: application/json
+
+{
+  "name": "Thunder 1",
+  "age": 13,
+  "price": 5000,
+  "sale_status": "reserved"
+}
+
+### Eliminar un Caballo
+DELETE {{HttpFiles_HotAddress}}/horses/{{IdCaballo}}

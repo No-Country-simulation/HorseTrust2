@@ -54,3 +54,13 @@ export enum DocumentPurpose {
     vaccine_card = 'vaccine_card',
     certificate = 'certificate',
 }
+
+export enum ExamType {
+    basic = 'basic',
+    advanced = 'advanced',
+}
+
+export enum ExamResult {
+    apt = 'apt',
+    with_observations = 'with_observations',
+}
