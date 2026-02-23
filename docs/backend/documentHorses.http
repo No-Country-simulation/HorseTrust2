@@ -1,0 +1,106 @@
+@HttpFiles_HotAddress = http://localhost:3000/api/v1
+@IdCaballo = 94293ba1-6e96-447f-aafb-d218185bc1b8
+
+### ===============================
+### LISTAR DOCUMENTOS DEL CABALLO
+### ===============================
+
+GET {{HttpFiles_HotAddress}}/horses/{{IdCaballo}}/documents
+Accept: application/json
+
+
+### Filtrar documentos veterinarios
+GET {{HttpFiles_HotAddress}}/horses/{{IdCaballo}}/documents?category=veterinary
+Accept: application/json
+
+
+### Filtrar documentos ownership
+GET {{HttpFiles_HotAddress}}/horses/{{IdCaballo}}/documents?category=ownership
+Accept: application/json
+
+
+
+### ===============================
+### SUBIR DOCUMENTO DE PROPIEDAD
+### ===============================
+
+POST {{HttpFiles_HotAddress}}/horses/{{IdCaballo}}/documents
+Accept: application/json
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="ejemplo.pdf"
+Content-Type: application/pdf
+
+< ./ejemplo.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="type"
+
+document
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="category"
+
+ownership
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="role"
+
+title
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+### ===============================
+### SUBIR DOCUMENTO VETERINARY
+### ===============================
+
+POST {{HttpFiles_HotAddress}}/horses/{{IdCaballo}}/documents
+Accept: application/json
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="ejemplo.pdf"
+Content-Type: application/pdf
+
+< ./test-files/ejemplo.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="type"
+
+document
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="category"
+
+veterinary
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="role"
+
+certificate
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="issuedAt"
+
+2024-06-01
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="vetName"
+
+Dr. Garcia Lopez
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="examType"
+
+basic
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="examResult"
+
+apt
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+@DocumentId = f47ac10b-58cc-4372-a567-0e02b2c3d479
+
+### ===============================
+### ELIMINAR DOCUMENTO
+### ===============================
+
+DELETE {{HttpFiles_HotAddress}}/horses/{{IdCaballo}}/documents?documentId={{DocumentId}}
+Accept: application/json
+
+
+### ===============================
+### ACCEDER ARCHIVO SUBIDO
+### ===============================
+
+GET http://localhost:3000/api/v1/uploads/horses/{{IdCaballo}}/f47ac10b-uuid.pdf

@@ -83,6 +83,22 @@ export const POST = withErrorHandler(async (req: Request) => {
     )
     if (disciplineError) return disciplineError
 
+    // verifica si el nombre del caballo ya existe para este usuario
+    const existingHorse = await repo.findOne({
+        where: {
+            name: body.name,
+            owner: { id: authUser.userId },
+        },
+    })
+
+    if (existingHorse) {
+        return errorResponse({
+            message: "Ya tienes un caballo registrado con ese nombre",
+            code: "HORSE_NAME_EXISTS",
+            statusCode: 400,
+            name: ""
+        })
+    }
 
     const horse = repo.create({
         owner: { id: authUser.userId },
@@ -90,6 +106,7 @@ export const POST = withErrorHandler(async (req: Request) => {
         age: body.age,
         sex: body.sex,
         breed: body.breed,
+        price: body.price,
         discipline: body.discipline,
     })
 

@@ -1,0 +1,33 @@
+@HttpFiles_HotAddress = http://localhost:3000/api/v1
+
+### ===============================
+### AUTH SYSTEM
+### ===============================
+
+POST {{HttpFiles_HotAddress}}/auth/register
+Accept: application/json
+
+{
+    "email": "user@gmail.com",
+    "password": "1234567890@"
+}
+
+### Login
+
+POST {{HttpFiles_HotAddress}}/auth/login
+Accept: application/json
+
+{
+    "email": "user@gmail.com",
+    "password": "1234567890@"
+}
+
+### Logout
+
+POST {{HttpFiles_HotAddress}}/auth/logout
+Accept: application/json 
+
+### Ruta Test , Ruta Proteegida
+
+GET {{HttpFiles_HotAddress}}/auth/test
+Accept: application/json

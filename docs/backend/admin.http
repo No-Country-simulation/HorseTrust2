@@ -1,0 +1,41 @@
+@HttpFiles_HotAddress = http://localhost:3000/api/v1
+@IdCaballo = 94293ba1-6e96-447f-aafb-d218185bc1b8
+### ===============================
+### ADMIN
+### ===============================
+
+### Login
+
+POST {{HttpFiles_HotAddress}}/auth/login
+Accept: application/json
+
+{
+    "email": "admin@admin.com",
+    "password": "admin"
+}
+
+
+### Cerrar Session
+
+POST {{HttpFiles_HotAddress}}/auth/logout
+Accept: application/json 
+
+
+### ver Listado de Caballos Pendientes de Verificación
+GET {{HttpFiles_HotAddress}}/admin/horses/pending
+Accept: application/json
+
+### Ver Detalles de un Caballo 
+
+GET {{HttpFiles_HotAddress}}/admin/horses/{{IdCaballo}}
+Accept: application/json
+
+### Actualizar Estado de un Caballo
+
+PUT {{HttpFiles_HotAddress}}/admin/horses/{{IdCaballo}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "status": "verified"
+}
