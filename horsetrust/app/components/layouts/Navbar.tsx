@@ -50,7 +50,7 @@ export  async function NavbarContainer() {
                 {authUser && (
                     <>
                         <li>
-                            <Link href="/dashboard">
+                            <Link href="/me">
                                 <button className="px-5 py-3 bg-transparent border border-[rgb(var(--color-gold))] text-[rgb(var(--color-gold))] text-xs uppercase transition-all duration-300 hover:bg-[rgb(var(--color-gold))] hover:text-black">
                                     Mi Panel
                                 </button>
