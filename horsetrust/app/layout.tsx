@@ -4,6 +4,7 @@ import "./globals.css";
 //import NavbarContainer from "@/app/components/layouts/Navbar";
 import { NavbarContainer } from "@/app/components/layouts/Navbar";
 import Footer from "@/app/components/layouts/Footer";
+import ChatFloatingButton from "@/app/components/chat/ChatFloatingButton";
 
 const montserratSans = Montserrat({
   variable: "--font-montserrat-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
                 {children}
             </main>
             <Footer/>
+            <ChatFloatingButton />
       </body>
     </html>
   );

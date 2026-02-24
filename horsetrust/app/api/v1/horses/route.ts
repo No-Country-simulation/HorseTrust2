@@ -30,7 +30,7 @@ export const GET = withErrorHandler(async (req: NextRequest) => {
     const repo = await getRepository(Horse)
     const horses = await repo.find({
         where,
-        //relations: ["owner"], // opcional si quieres traer las relaciones
+        relations: ["owner"],
         select: {
             id: true,
             age: true,
@@ -41,6 +41,8 @@ export const GET = withErrorHandler(async (req: NextRequest) => {
             sex: true,
             verification_status: true,
             owner: {
+                id: true,
+                avatar_url: true,
                 addresses: true,
             },
         },
