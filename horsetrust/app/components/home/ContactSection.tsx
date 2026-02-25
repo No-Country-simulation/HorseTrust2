@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export default function ContactSection(){
     return (
         <section className="py-40 px-8 lg:px-16 bg-gradient-to-br from-[rgb(var(--color-terracota))] to-black text-center relative overflow-hidden reveal">
@@ -14,9 +16,9 @@ export default function ContactSection(){
                     <br />
                     Verificamos tu perfil y brindamos seguridad en cada transacción.
                 </p>
-                <a href="#contacto" className="inline-block px-16 py-6 bg-[rgb(var(--color-gold))] text-black text-xs tracking-[0.1875em] uppercase no-underline transition-all duration-400 font-medium hover:bg-[rgb(var(--color-cream))] hover:-translate-y-2 hover:shadow-2xl" style={{boxShadow: "0 10px 30px rgba(181, 186, 114, 0);"}}>
+                <Link href="/contact" className="inline-block px-16 py-6 bg-[rgb(var(--color-gold))] text-black text-xs tracking-[0.1875em] uppercase no-underline transition-all duration-400 font-medium hover:bg-[rgb(var(--color-cream))] hover:-translate-y-2 hover:shadow-2xl" style={{boxShadow: "0 10px 30px rgba(181, 186, 114, 0);"}}>
                     Publicar Ahora
-                </a>
+                </Link>
             </div>
         </section>
     )
