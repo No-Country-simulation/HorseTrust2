@@ -15,7 +15,7 @@ export default function NavbarLinks({ stylesNavItems, stylesSpan, authUser }: Pr
 
   const links: {name: string; href:string}[] = [
     { name: "Inicio", href: "/" },
-    { name: "Galería", href: "/galery" },
+    { name: "Galería", href: "/gallery" },
     { name: "Cómo funciona", href: "/como-funciona" },
     { name: "Contacto", href: "/contact" },
   ]
