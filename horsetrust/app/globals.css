@@ -16,10 +16,6 @@
     box-sizing: border-box;
 }
 
-* {
-    margin: 0;
-}
-
 html,
 body {
     height: 100%;
@@ -115,4 +111,18 @@ ol {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+}
+
+.input-field {
+    transition: all 0.3s ease;
+}
+
+.input-field:focus {
+    border-color: rgb(var(--color-gold));
 }

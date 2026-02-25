@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Cormorant_Garamond} from "next/font/google";
 import "./globals.css";
-//import NavbarContainer from "@/app/components/layouts/Navbar";
 import { NavbarContainer } from "@/app/components/layouts/Navbar";
 import Footer from "@/app/components/layouts/Footer";
 import ChatFloatingButton from "@/app/components/chat/ChatFloatingButton";
