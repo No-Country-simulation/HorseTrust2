@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import LogoutButton from '../logoutButton'
+import NavbarChatBadge from './NavbarChatBadge'
 
 type Props = {
     stylesNavItems: string
@@ -84,6 +85,8 @@ export default function NavbarLinks({ stylesNavItems, stylesSpan, authUser }: Pr
 
       {authUser && (
         <>
+          <NavbarChatBadge stylesNavItems={stylesNavItems} />
+
           <li>
             <Link href="/me">
               <button
