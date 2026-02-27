@@ -1,0 +1,17 @@
+.horseCard {
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 20px rgba(238, 238, 255, 0.15);
+}
+
+.horseCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(238, 238, 255, 0.25);
+}
+
+.horseCard img {
+    transition: all 0.5s ease;
+}
+
+.horseCard:hover img {
+    transform: scale(1.1);
+}
