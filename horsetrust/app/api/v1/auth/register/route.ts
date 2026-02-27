@@ -25,12 +25,15 @@ export const POST = withErrorHandler(async (req: NextRequest) => {
   const user = repo.create({
     email: body.email,
     password: hashedPassword,
+    first_name: body.first_name || null,
+    last_name: body.last_name || null,
+    phone: body.phone || null,
   });
 
   await repo.save(user);
 
   return successResponse(
-    { id: user.id, email: user.email },
+    { id: user.id, email: user.email, first_name: user.first_name, last_name: user.last_name },
     "Usuario creado correctamente",
     201
   );
