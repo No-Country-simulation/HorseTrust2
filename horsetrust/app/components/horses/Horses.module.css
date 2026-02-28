@@ -1,0 +1,18 @@
+.thumbnail {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+    border-color: rgb(var(--color-gold));
+}
+
+.thumbnail.active {
+    border-color: rgb(var(--color-gold));
+    opacity: 1;
+}
+
+.main-image {
+    transition: opacity 0.3s ease;
+}

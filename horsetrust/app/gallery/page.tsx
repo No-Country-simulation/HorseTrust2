@@ -11,8 +11,7 @@ async function getHorses() {
 
   const json = await res.json()
 
-  // 🔥 IMPORTANTE
-  return json.data
+  return json.data.horses
 }
 
 export default async function Page() {

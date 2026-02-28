@@ -22,17 +22,17 @@ async function getHorse(id: string) {
 }
 
 export default async function HorseDetailPage({ params }: Props) {
-  const { id } = await params   // 👈 ESTO ES LO QUE TE FALTABA
+  const { id } = await params  
 
   const cookieStore = await cookies()
   const token = cookieStore.get("token")?.value
 
-  // 🔐 2️⃣ Si no hay token → redirect
+  
   if (!token) {
     redirect("/login")
   }
 
-  // 🔐 3️⃣ Verificar token
+  
   try {
     verifyToken(token)
   } catch {

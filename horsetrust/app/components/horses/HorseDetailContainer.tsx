@@ -1,30 +1,20 @@
+import ColumnLeftContainer from "./ColumnLeftContainer"
+import ColumnRightContainer from "./ColumnRightContainer"
+
 interface Props {
   horse: any
 }
 
 export default function HorseDetailContainer({ horse }: Props){
     return (
-        <div className="p-10 text-white">
-            <h1 className="text-3xl font-bold mb-4">
-                {horse.name}
-            </h1>
+        <div className="fontMontserrat bg-black text-[rgb(var(--color-cream))] overflow-x-hidden">
+            <section className="py-12 px-8 lg:px-16 bg-gradient-to-b from-black to-[rgb(var(--color-teal)/0.1)]">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
 
-            <p>{horse.breed} • {horse.age} años</p>
-            <p>{horse.discipline}</p>
-            <p>Precio: {horse.price ?? "Consultar"}</p>
-
-            <div className="mt-6">
-                <h2 className="text-xl mb-2">Propietario</h2>
-                <p>{horse.owner.first_name} {horse.owner.last_name}</p>
-                <p>{horse.owner.email}</p>
-            </div>
-
-            <div className="mt-6">
-                <h2 className="text-xl mb-2">Documentos</h2>
-                {horse.documents.map((doc: any) => (
-                <p key={doc.id}>{doc.category}</p>
-                ))}
-            </div>
+                    <ColumnLeftContainer horse={horse} /> 
+                    <ColumnRightContainer horse={horse} seller={horse.owner}/>
+                </div>
+            </section>
         </div>
     )
 }
