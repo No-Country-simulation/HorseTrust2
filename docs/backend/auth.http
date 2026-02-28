@@ -18,8 +18,8 @@ POST {{HttpFiles_HotAddress}}/auth/login
 Accept: application/json
 
 {
-    "email": "user@gmail.com",
-    "password": "1234567890@"
+    "email": "jhonsonzabala37@gmail.com",
+    "password": "J#123456"
 }
 
 ### Logout
