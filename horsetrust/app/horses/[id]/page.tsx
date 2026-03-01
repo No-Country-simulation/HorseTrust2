@@ -9,6 +9,7 @@ interface Props {
   }>
 }
 
+
 async function getHorse(id: string) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/horses/${id}`,
@@ -21,18 +22,34 @@ async function getHorse(id: string) {
   return data.data
 }
 
+async function getHorseDocuments(id: string, token: string) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/horses/${id}/documents`,
+    {
+      cache: "no-store",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  )
+
+  if (!res.ok) return []
+
+  const data = await res.json()
+  return data.data
+}
+
 export default async function HorseDetailPage({ params }: Props) {
-  const { id } = await params  
+  const { id } = await params
 
   const cookieStore = await cookies()
   const token = cookieStore.get("token")?.value
 
-  
+
   if (!token) {
     redirect("/login")
   }
 
-  
   try {
     verifyToken(token)
   } catch {
@@ -49,5 +66,12 @@ export default async function HorseDetailPage({ params }: Props) {
     return <div>Caballo no encontrado</div>
   }
 
-  return <HorseDetailContainer horse={horse} />
+  const documents = await getHorseDocuments(id, token)
+
+  return (
+    <HorseDetailContainer
+      horse={horse}
+      documents={documents}
+    />
+  )
 }
