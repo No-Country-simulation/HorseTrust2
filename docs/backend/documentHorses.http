@@ -1,5 +1,5 @@
 @HttpFiles_HotAddress = http://localhost:3000/api/v1
-@IdCaballo = 94293ba1-6e96-447f-aafb-d218185bc1b8
+@IdCaballo = c4ccabe5-f359-4708-b1d8-029af994f25b
 
 ### ===============================
 ### LISTAR DOCUMENTOS DEL CABALLO
@@ -32,7 +32,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
 Content-Disposition: form-data; name="file"; filename="ejemplo.pdf"
 Content-Type: application/pdf
 
-< ./ejemplo.pdf
+< ./ejemple.pdf
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="type"
 
