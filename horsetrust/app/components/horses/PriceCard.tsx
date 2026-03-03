@@ -1,8 +1,31 @@
+"use client"
+
+import { useChatStore } from "@/store/chatStore"
+import { useSession } from "@/store/authSession"
+import { useRouter } from "next/navigation"
+
 interface Props {
   horse: any
 }
 
-export default function PriceCard({ horse }: Props){
+export default function PriceCard({ horse }: Props) {
+    const { setSellerId, setOpen } = useChatStore()
+    const { isAuthenticated } = useSession()
+    const router = useRouter()
+
+    const handleContact = () => {
+        if (!isAuthenticated) {
+            router.push("/login")
+            return
+        }
+
+        const sellerId = horse.owner?.id
+        if (!sellerId) return
+
+        setSellerId(sellerId)
+        setOpen(true)
+    }
+
     return (
         <div className="bg-gradient-to-br from-[rgb(var(--color-gold)/0.2)] to-[rgb(var(--color-terracota)/0.2)] border border-[rgb(var(--color-gold)/0.4)] p-8 sticky top-26 mb-20">
             <div className="text-center mb-6">
@@ -11,7 +34,10 @@ export default function PriceCard({ horse }: Props){
             </div>
 
             <div className="space-y-4">
-                <button className="w-full px-8 py-4 bg-[rgb(var(--color-gold))] text-black text-sm tracking-[0.125em] uppercase font-medium hover:bg-[rgb(var(--color-teal))] hover:text-[rgb(var(--color-cream))] transition-all duration-300">
+                <button 
+                    onClick={handleContact}
+                    className="w-full px-8 py-4 bg-[rgb(var(--color-gold))] text-black text-sm tracking-[0.125em] uppercase font-medium hover:bg-[rgb(var(--color-teal))] hover:text-[rgb(var(--color-cream))] transition-all duration-300 cursor-pointer"
+                >
                     💬 Contactar Vendedor
                 </button>
                 
@@ -34,5 +60,4 @@ export default function PriceCard({ horse }: Props){
             </div>
         </div>
     )
-
 }
