@@ -46,6 +46,15 @@ export class Horse {
     @Column({ type: 'enum', enum: VerificationStatus, default: VerificationStatus.pending })
     verification_status!: VerificationStatus;
 
+    @Column({ type: 'varchar', nullable: true })
+    color?: string;
+
+    @Column({ type: 'text', nullable: true })
+    description?: string;
+
+    @Column({ type: 'integer', nullable: true })
+    height?: number;
+
     @CreateDateColumn()
     created_at!: Date;
 

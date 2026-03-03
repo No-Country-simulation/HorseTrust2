@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from "react"
 import { useSession } from "@/store/authSession"
 import ReviewItem from "./ReviewItem"
 import ReviewForm from "./ReviewForm"
+import { Star } from "lucide-react"
 
 interface ReviewData {
     id: string
@@ -103,7 +104,7 @@ useEffect(() => {
 
     return (
         <div className="bg-black/50 border border-[rgb(var(--color-gold)/0.2)] p-6">
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col items-start gap-3 justify-between mb-6">
                 <div className="flex items-center gap-3">
                     <span className="text-[rgb(var(--color-gold))] text-lg">◆</span>
                     <h3 className="fontCormorant text-2xl text-[rgb(var(--color-gold))] uppercase tracking-wide">Reseñas</h3>
@@ -112,9 +113,10 @@ useEffect(() => {
                 {isAuthenticated && !isOwnProfile && loaded && (
                     <button
                         onClick={() => { setEditingReview(null); setShowForm(true) }}
-                        className="fontMontserrat text-xs px-4 py-2 bg-[rgb(var(--color-gold))] text-black uppercase tracking-wider font-medium hover:bg-[rgb(var(--color-teal))] hover:text-[rgb(var(--color-cream))] transition-all duration-300 cursor-pointer"
+                        className="fontMontserrat w-full flex items-center justify-center gap-3 text-xs px-4 py-2 bg-[rgb(var(--color-gold))] text-black uppercase tracking-wider font-medium hover:bg-[rgb(var(--color-teal))] hover:text-[rgb(var(--color-cream))] transition-all duration-300 cursor-pointer"
                     >
-                        ⭐ Dejar Reseña
+                        <Star  size={20} strokeWidth={1} />
+                        Dejar Reseña
                     </button>
                 )}
             </div>

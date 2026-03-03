@@ -1,3 +1,5 @@
+import { Check } from "lucide-react"
+
 interface Props {
   seller: any
 }
@@ -29,23 +31,15 @@ export default function SellerDetail({ seller }: Props){
                 {/*Datos dinamicos con un map*/}
                 <div className="flex justify-between text-sm">
                     <span className="text-[rgb(var(--color-cream)/0.6)]">Miembro desde</span>
-                    <span className="text-[rgb(var(--color-cream))]">2018</span>
+                    <span className="text-[rgb(var(--color-cream))]">{new Date(seller.created_at).getFullYear()}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                     <span className="text-[rgb(var(--color-cream)/0.6)]">Caballos vendidos</span>
-                    <span className="text-[rgb(var(--color-cream))]">47</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                    <span className="text-[rgb(var(--color-cream)/0.6)]">Tasa de respuesta</span>
-                    <span className="text-[rgb(var(--color-cream))]">98%</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                    <span className="text-[rgb(var(--color-cream)/0.6)]">Tiempo de respuesta</span>
-                    <span className="text-[rgb(var(--color-cream))]">&lt; 2 horas</span>
+                    <span className="text-[rgb(var(--color-cream))]">{seller.total_sales || 0}</span>
                 </div>
             </div>
 
-            <button className="w-full px-6 py-3 bg-transparent border border-[rgb(var(--color-teal)/0.6)] text-[rgb(var(--color-teal))] text-xs tracking-[0.125em] uppercase hover:border-[rgb(var(--color-teal))] hover:bg-[rgb(var(--color-teal))] hover:text-[rgb(var(--color-cream))] transition-all duration-300">
+            <button className="w-full px-6 py-3 bg-transparent border border-[rgb(var(--color-teal)/0.8)] text-[rgb(var(--color-teal))] text-xs tracking-[0.125em] uppercase hover:border-[rgb(var(--color-teal))] hover:bg-[rgb(var(--color-teal))] hover:text-[rgb(var(--color-cream))] transition-all duration-300">
                 Ver Perfil Completo
             </button>
 
@@ -53,19 +47,19 @@ export default function SellerDetail({ seller }: Props){
                 <div className="text-xs text-[rgb(var(--color-cream)/0.6)] uppercase tracking-wider mb-3">Verificaciones</div>
                 <div className="space-y-2 text-xs text-[rgb(var(--color-cream)/0.8)]">
                     <div className={styleSpan}>
-                        <span className="text-[rgb(var(--color-gold))]">✓</span>
+                        <Check className="text-[rgb(var(--color-gold))]" width={15}/>
                         <span>Identidad Verificada</span>
                     </div>
                     <div className={styleSpan}>
-                        <span className="text-[rgb(var(--color-gold))]">✓</span>
+                        <Check className="text-[rgb(var(--color-gold))]" width={15}/>
                         <span>Email Confirmado</span>
                     </div>
                     <div className={styleSpan}>
-                        <span className="text-[rgb(var(--color-gold))]">✓</span>
+                        <Check className="text-[rgb(var(--color-gold))]" width={15}/>
                         <span>Teléfono Confirmado</span>
                     </div>
                     <div className={styleSpan}>
-                        <span className="text-[rgb(var(--color-gold))]">✓</span>
+                        <Check className="text-[rgb(var(--color-gold))]" width={15}/>
                         <span>Ubicación Verificada</span>
                     </div>
                 </div>

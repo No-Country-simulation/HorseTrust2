@@ -42,6 +42,8 @@ export const GET = withErrorHandler(async (
         sale_status: true,
         sex: true,
         price: true,
+        color:true,
+        description:true,
         sales:{
             id: true,
             price: true,
@@ -66,6 +68,8 @@ export const GET = withErrorHandler(async (
             reviews_given: true,
             reviews_received: true,
             initiated_chats: true,
+            created_at: true,
+            total_sales: true,
         },
     }
   })
