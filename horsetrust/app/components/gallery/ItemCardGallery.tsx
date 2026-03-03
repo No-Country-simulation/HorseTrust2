@@ -5,6 +5,7 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import AuthModal from "../ui/AuthModal"
+import VerificationBadge from "./VerificationBadge"
 
 interface Props {
   horse: any
@@ -20,7 +21,7 @@ export default function ItemCardGallery({ horse }: Props) {
       try {
         const res = await fetch("/api/v1/me", {
           method: "GET",
-          credentials: "include", // 🔥 necesario para enviar la cookie
+          credentials: "include", 
         })
 
         setIsAuthenticated(res.ok)
@@ -41,6 +42,21 @@ export default function ItemCardGallery({ horse }: Props) {
     router.push(`/horses/${horse.id}`)
   }
 
+  const statusColors: Record<string, string> = {
+    for_sale: "bg-[rgb(var(--color-gold))] text-black",
+    reserved: "bg-orange-500 text-white",
+    sold: "bg-red-600 text-white",
+  };
+
+  const statusClass = statusColors[horse.sale_status] ?? "bg-gray-400 text-white";
+
+  const statusLabels: Record<string, string> = {
+    for_sale: "A la venta",
+    reserved: "Reservado",
+    sold: "Vendido",
+  };
+
+
   return (
     <section>
 
@@ -54,9 +70,11 @@ export default function ItemCardGallery({ horse }: Props) {
               className="w-full h-full object-cover"
             />
     
-            <div className="absolute top-4 right-4 bg-[rgb(var(--color-gold))] text-black px-3 py-1 text-xs uppercase tracking-wider font-medium">
-              {horse.verification_status}
+            <div className={`absolute top-4 right-4 px-3 py-1 text-xs uppercase tracking-wider font-medium ${statusClass}`}>
+              {statusLabels[horse.sale_status] ?? horse.sale_status}
             </div>
+
+            
     
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
     
@@ -70,16 +88,12 @@ export default function ItemCardGallery({ horse }: Props) {
     
             <div className="space-y-2 p-4">
                 <div className="flex justify-between items-start py-4">
-                <h3 className="fontCormorant text-xl text-[rgb(var(--color-cream))] tracking-wide">
-                    {horse.name}
-                </h3>
-    
-                <div className="flex items-center gap-1 text-[rgb(var(--color-gold))] text-sm">
-                    ★{" "}
-                    <span className="fontMontserrat text-[rgb(var(--color-cream)/0.8)]">
-                    {horse.rating || 0.0}
-                    </span>
-                </div>
+                    <h3 className="fontCormorant text-xl text-[rgb(var(--color-cream))] tracking-wide">
+                        {horse.name}
+                    </h3>
+
+                    <VerificationBadge status={horse.verification_status} />
+                
                 </div>
     
                 <p className="text-sm py-2 fontMontserrat text-[rgb(var(--color-cream)/0.6)] font-light">
