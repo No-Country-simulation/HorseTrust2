@@ -2,3 +2,6 @@ ignoredBuiltDependencies:
   - bcrypt
   - sharp
   - unrs-resolver
+
+onlyBuiltDependencies:
+  - esbuild
