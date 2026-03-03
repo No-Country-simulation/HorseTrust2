@@ -75,7 +75,7 @@ export default function ComoFuncionaContainer(){
                         <ProcesoItem color="gold" nro={1} title="Explorá" description="Navegá por nuestra colección de caballos verificados. Usá filtros avanzados para buscar por categoría, ubicación, precio y características específicas." items={["Fotos y videos de alta calidad", "Información detallada y completa", "Documentación médica verificada", "Certificados de pedigrí validados"]} />
                         <ProcesoItem color="teal" nro={2} title="Conectá" description="Usá nuestro sistema de mensajería seguro para contactar directamente al vendedor. 
                         Consultá sus reseñas y reputación antes de coordinar una visita." items={["Chat seguro y privado", "Sistema de reseñas transparente", "Perfil del vendedor verificado", "Historial de ventas visible"]} />
-                        <ProcesoItem color="terracota" nro={3} title="Comprá Seguro" description="Coordiná la visita, evaluá el caballo en persona y cerrá la operación directamente 
+                        <ProcesoItem color="gold" nro={3} title="Comprá Seguro" description="Coordiná la visita, evaluá el caballo en persona y cerrá la operación directamente 
                         con el vendedor. Nuestra verificación previa te garantiza tranquilidad." items={["Trato directo sin comisiones", "Documentación validada previamente", "Sistema de mediación disponible", "Deja tu reseña post-compra"]} />                        
                     </div>
                 </div>
