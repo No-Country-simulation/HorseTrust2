@@ -11,7 +11,7 @@ POST {{HttpFiles_HotAddress}}/horses
 Accept: application/json
 
 {
-    "name": "Lightning2",
+    "name": "Lightning100",
     "age": 5,
     "sex": "male",
     "discipline":"racing",

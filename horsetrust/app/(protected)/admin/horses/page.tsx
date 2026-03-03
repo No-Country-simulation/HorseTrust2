@@ -1,13 +1,12 @@
 import { cookies } from "next/headers"
-import AdminHorsesContainer from "./horses/_components/AdminHorsesContainer"
-//import AdminHorsesContainer from "./_components/AdminHorsesContainer"
+import AdminHorsesContainer from "./_components/AdminHorsesContainer"
 
 async function getAllHorses(token: string) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/horses?limit=100`,
     {
       cache: "no-store",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Cookie: `token=${token}` },
     }
   )
   if (!res.ok) return []

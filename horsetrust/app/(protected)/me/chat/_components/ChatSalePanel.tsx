@@ -7,7 +7,7 @@ interface Horse {
   id: string;
   name: string;
   breed: string;
-  price: number;
+  price: number | null;
   sale_status: string;
 }
 
@@ -60,13 +60,19 @@ export default function ChatSalePanel({
   const handleHorseChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const horse = horses.find((h) => h.id === e.target.value);
     setSelectedHorseId(e.target.value);
-    setPrice(horse ? String(horse.price) : "");
+    setPrice(horse?.price != null ? String(horse.price) : "");
     setError("");
     setSuccess(false);
   };
 
   const handleSubmit = async () => {
     if (!selectedHorseId || !price) return;
+
+    const numericPrice = Number(price);
+    if (isNaN(numericPrice) || numericPrice <= 0) {
+      setError("El precio debe ser un número válido mayor a 0");
+      return;
+    }
 
     setSubmitting(true);
     setError("");
@@ -78,7 +84,7 @@ export default function ChatSalePanel({
         body: JSON.stringify({
           horseId: selectedHorseId,
           buyerId,
-          price: Number(price),
+          price: numericPrice,
         }),
       });
       const data = await res.json();
@@ -189,7 +195,7 @@ export default function ChatSalePanel({
 
       {selectedHorse && (
         <p className="text-xs text-gray-400 mt-1.5">
-          {selectedHorse.name} · {selectedHorse.breed} · Precio sugerido: ${selectedHorse.price.toLocaleString()}
+          {selectedHorse.name} · {selectedHorse.breed} · Precio sugerido: ${selectedHorse.price != null ? selectedHorse.price.toLocaleString() : "A consultar"}
         </p>
       )}
     </div>

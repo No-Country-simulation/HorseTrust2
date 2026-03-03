@@ -12,7 +12,7 @@ export default function ColumnRightContainer({ horse, seller }: Props){
         <div className="lg:col-span-1 space-y-8">
             <PriceCard horse={horse} />
             <SellerDetail seller={seller} />
-            <ReviewsContainer />
+            <ReviewsContainer sellerId={seller?.id} />
         </div>
     )
 }
