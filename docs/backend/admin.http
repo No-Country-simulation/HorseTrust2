@@ -30,7 +30,8 @@ Accept: application/json
 GET {{HttpFiles_HotAddress}}/admin/horses/{{IdCaballo}}
 Accept: application/json
 
-### Actualizar Estado de un Caballo
+### Aprobar un Caballo (verified)
+### Envía mensaje automático al vendedor vía chat
 
 PUT {{HttpFiles_HotAddress}}/admin/horses/{{IdCaballo}}
 Content-Type: application/json
@@ -38,4 +39,26 @@ Accept: application/json
 
 {
   "status": "verified"
+}
+
+### Rechazar un Caballo (rejected, con motivo)
+### Envía mensaje automático al vendedor vía chat con el motivo
+
+PUT {{HttpFiles_HotAddress}}/admin/horses/{{IdCaballo}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "status": "rejected",
+  "reason": "La documentación de propiedad no es válida. Por favor suba un documento actualizado."
+}
+
+### Volver a poner en Pendiente
+
+PUT {{HttpFiles_HotAddress}}/admin/horses/{{IdCaballo}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "status": "pending"
 }
