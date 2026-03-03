@@ -13,7 +13,7 @@ export function useReveal() {
         });
       },
       {
-        threshold: 0.1, // se activa cuando 20% del elemento es visible
+        threshold: 0.1, 
       }
     );
 
