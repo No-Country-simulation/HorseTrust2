@@ -1,6 +1,7 @@
 @HttpFiles_HotAddress = http://localhost:3000/api/v1
 @IdVendedor = c4ccabe5-f359-4708-b1d8-029af994f25b
 @IdVenta = f47ac10b-58cc-4372-a567-0e02b2c3d479
+@IdReview = 00000000-0000-0000-0000-000000000000
 
 ### ===============================
 ### REVIEWS (RESEÑAS)
@@ -18,7 +19,9 @@ GET {{HttpFiles_HotAddress}}/me/reviews
 Accept: application/json
 
 
-### Dejar Reseña a un Vendedor (después de una compra)
+### ===============================
+### CREAR RESEÑA (requiere venta completada)
+### ===============================
 
 POST {{HttpFiles_HotAddress}}/sales/{{IdVenta}}/reviews
 Accept: application/json
@@ -28,3 +31,25 @@ Content-Type: application/json
     "rating": 5,
     "comment": "Excelente experiencia. El caballo llegó en perfectas condiciones."
 }
+
+
+### ===============================
+### ACTUALIZAR RESEÑA (solo el autor)
+### ===============================
+
+PATCH {{HttpFiles_HotAddress}}/reviews/{{IdReview}}
+Accept: application/json
+Content-Type: application/json
+
+{
+    "rating": 4,
+    "comment": "Buena experiencia, aunque la entrega tardó un poco."
+}
+
+
+### ===============================
+### ELIMINAR RESEÑA (solo el autor)
+### ===============================
+
+DELETE {{HttpFiles_HotAddress}}/reviews/{{IdReview}}
+Accept: application/json
