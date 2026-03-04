@@ -8,6 +8,7 @@ import AuthModal from "../ui/AuthModal"
 import VerificationBadge from "./VerificationBadge"
 
 interface Props {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   horse: any
 }
 
@@ -15,6 +16,50 @@ export default function ItemCardGallery({ horse }: Props) {
   const router = useRouter()
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null)
   const [showModal, setShowModal] = useState(false)
+
+  const [horseImage, setHorseImage] = useState<string>("/images/placeholder-horses.png")
+
+  useEffect(() => {
+    let canceled = false
+
+    const fetchImage = async () => {
+      let url: string | null = null
+      if (horse?.documents && Array.isArray(horse.documents)) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const imageDoc = horse.documents.find((doc: any) => doc.type === 'image' && doc.url)
+        if (imageDoc) {
+          url = imageDoc.url
+        }
+      }
+            
+      if (!url) {
+        try {
+          const res = await fetch(`/api/v1/horses/${horse.id}/documents`)
+          if (res.ok) {
+            const json = await res.json()
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const imageDoc = (json.data || []).find((doc: any) => doc.type === 'image' && doc.url)
+            if (imageDoc) {
+              url = imageDoc.url
+            }
+          }
+        } catch (err) {
+          console.error('Error fetching horse documents for image:', err)
+        }
+      }
+
+      if (!canceled) {
+        if (url) {
+          setHorseImage(url.replace('/api/v1/uploads/', '/uploads/'))
+        } else {
+          setHorseImage("/images/placeholder-horses.png")
+        }
+      }
+    }
+
+    fetchImage()
+    return () => { canceled = true }
+  }, [horse])
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -63,7 +108,7 @@ export default function ItemCardGallery({ horse }: Props) {
         <div className={`${styles.horseCard} group`}>
           <div className="relative fontMontserrat overflow-hidden aspect-[3/4] bg-[rgb(var(--color-teal)/0.2)] mb-4">
             <Image
-              src="/images/placeholder-horses.png"
+              src={horseImage}
               alt="Caballo"
               width={200}
               height={300}
@@ -114,12 +159,13 @@ export default function ItemCardGallery({ horse }: Props) {
                 </span>
             </div>
         </div>
-        </div>
-            <AuthModal
-            isOpen={showModal}
-            onClose={() => setShowModal(false)}
-            redirectTo={`/horses/${horse.id}`}
-        />
+        
+      </div>
+      <AuthModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        redirectTo={`/horses/${horse.id}`}
+      />
     </section>
   )
 }
