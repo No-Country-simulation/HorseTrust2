@@ -19,7 +19,6 @@ async function getHorse(id: string) {
   if (!res.ok) return null
 
   const data = await res.json()
-  console.log("Horse data:", data)
   return data.data
 }
 
@@ -51,8 +50,10 @@ export default async function HorseDetailPage({ params }: Props) {
     redirect("/login")
   }
 
+  let currentUserId: string | null = null
   try {
-    verifyToken(token)
+    const payload = verifyToken(token)
+    currentUserId = payload.userId
   } catch {
     redirect("/login")
   }
@@ -69,10 +70,13 @@ export default async function HorseDetailPage({ params }: Props) {
 
   const documents = await getHorseDocuments(id, token)
 
+  const isOwner = currentUserId === horse.owner?.id
+
   return (
     <HorseDetailContainer
       horse={horse}
       documents={documents}
+      isOwner={isOwner}
     />
   )
 }

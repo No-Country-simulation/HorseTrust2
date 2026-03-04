@@ -1,10 +1,10 @@
 import { Check } from "lucide-react"
 
 interface Props {
-  seller: any
+    seller: any
 }
 
-export default function SellerDetail({ seller }: Props){
+export default function SellerDetail({ seller }: Props) {
     const styleSpan = "flex items-center gap-2"
     return (
         <div className="bg-black/50 border border-[rgb(var(--color-gold)/0.2)] p-6">
@@ -31,7 +31,11 @@ export default function SellerDetail({ seller }: Props){
                 {/*Datos dinamicos con un map*/}
                 <div className="flex justify-between text-sm">
                     <span className="text-[rgb(var(--color-cream)/0.6)]">Miembro desde</span>
-                    <span className="text-[rgb(var(--color-cream))]">{new Date(seller.created_at).getFullYear()}</span>
+                    <span className="text-[rgb(var(--color-cream))]">
+                        {seller?.created_at && !isNaN(new Date(seller.created_at).getTime())
+                            ? new Date(seller.created_at).getFullYear()
+                            : "—"}
+                    </span>
                 </div>
                 <div className="flex justify-between text-sm">
                     <span className="text-[rgb(var(--color-cream)/0.6)]">Caballos vendidos</span>
@@ -47,19 +51,19 @@ export default function SellerDetail({ seller }: Props){
                 <div className="text-xs text-[rgb(var(--color-cream)/0.6)] uppercase tracking-wider mb-3">Verificaciones</div>
                 <div className="space-y-2 text-xs text-[rgb(var(--color-cream)/0.8)]">
                     <div className={styleSpan}>
-                        <Check className="text-[rgb(var(--color-gold))]" width={15}/>
+                        <Check className="text-[rgb(var(--color-gold))]" width={15} />
                         <span>Identidad Verificada</span>
                     </div>
                     <div className={styleSpan}>
-                        <Check className="text-[rgb(var(--color-gold))]" width={15}/>
+                        <Check className="text-[rgb(var(--color-gold))]" width={15} />
                         <span>Email Confirmado</span>
                     </div>
                     <div className={styleSpan}>
-                        <Check className="text-[rgb(var(--color-gold))]" width={15}/>
+                        <Check className="text-[rgb(var(--color-gold))]" width={15} />
                         <span>Teléfono Confirmado</span>
                     </div>
                     <div className={styleSpan}>
-                        <Check className="text-[rgb(var(--color-gold))]" width={15}/>
+                        <Check className="text-[rgb(var(--color-gold))]" width={15} />
                         <span>Ubicación Verificada</span>
                     </div>
                 </div>
