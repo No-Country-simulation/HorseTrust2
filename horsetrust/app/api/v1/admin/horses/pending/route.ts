@@ -4,7 +4,7 @@ import { getAuthUser } from "@/lib/auth/get-user-from-token"
 import { Horse } from "@/lib/database/entities/Horse"
 import { VerificationStatus } from "@/lib/database/enums"
 import { getRepository } from "@/lib/database/get-repository"
-import { errorResponse } from "@/lib/http/response-handler"
+import { errorResponse, successResponse } from "@/lib/http/response-handler"
 import { withErrorHandler } from "@/lib/http/with-error-handler"
 
 
@@ -36,14 +36,5 @@ export const GET = withErrorHandler(async () => {
         order: { created_at: "DESC" },
     })
 
-    return new Response(JSON.stringify({
-        success: true,
-        message: "Listado de caballos sin aprobar obtenido correctamente",
-        data: horses
-    }), {
-        status: 200,
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
+    return successResponse(horses, "Listado de caballos pendientes obtenido correctamente")
 })

@@ -24,15 +24,15 @@ export default function ItemDetailHorse({ horse }: Props){
                 </div>
                 <div>
                     <div className={stylesTitleItem}>Sexo</div>
-                    <div className={stylesValueItem}>{horse.sex || "Desconocida"}</div>
+                    <div className={stylesValueItem}>{horse.sex || "Desconocido"}</div>
                 </div>
                 <div>
                     <div className={stylesTitleItem}>Color</div>
-                    <div className={stylesValueItem}>Castaño Oscuro</div>
+                    <div className={stylesValueItem}>{horse.color || "Desconocido"}</div>
                 </div>
                 <div>
                     <div className={stylesTitleItem}>Altura</div>
-                    <div className={stylesValueItem}>1.58 m</div>
+                    <div className={stylesValueItem}>{horse.height ? `${horse.height} cm` : "Desconocida"}</div>
                 </div>
                 <div>
                     <div className={stylesTitleItem}>Disciplina</div>
@@ -40,36 +40,19 @@ export default function ItemDetailHorse({ horse }: Props){
                 </div>
                 <div>
                     <div className={stylesTitleItem}>Ubicación</div>
-                    <div className={stylesValueItem}>Buenos Aires, Argentina</div>
+                    <div className={stylesValueItem}>{horse.owner.address || "Desconocida"}</div>
                 </div>
                 <div>
                     <div className={stylesTitleItem}>Precio</div>
-                    <div className={stylesValueItem}>{horse.price || "Desconocida"}</div>
+                    <div className={stylesValueItem}>{horse.price || "Desconocido"}</div>
                 </div>
             </div>
 
             <div className="mt-8 pt-8 border-t border-[rgb(var(--color-cream)/0.1)]">
                 <div className="text-xs text-[rgb(var(--color-cream)/0.6)] uppercase tracking-wider mb-3">Descripción</div>
                 <p className="text-base font-light leading-relaxed text-[rgb(var(--color-cream)/0.8)]">
-                    Thunder es un ejemplar excepcional de Pura Sangre Árabe con un temperamento noble y equilibrado. 
-                    Destacado en doma clásica, ha participado en competencias regionales con excelentes resultados. 
-                    Su elegancia natural y disposición para el trabajo lo convierten en un compañero ideal tanto para 
-                    competencia como para equitación de placer. Maneja perfectamente aires extendidos y tiene una 
-                    excelente respuesta a las ayudas. Ideal para jinete intermedio-avanzado que busque un caballo 
-                    versátil y confiable.
+                    {horse.description || "No hay descripción proporcionada para este caballo."}
                 </p>
-            </div>
-
-            <div className="mt-8 pt-8 border-t border-[rgb(var(--color-cream)/0.1)]">
-                <div className="text-xs text-[rgb(var(--color-cream)/0.6)] uppercase tracking-wider mb-4">Características Destacadas</div>
-                <div className="flex flex-wrap gap-3">
-                    {/*Esto tambien deberia ser dinamico*/}
-                    <span className={stylesCaract}>Excelente Carácter</span>
-                    <span className={stylesCaract}>Competencia</span>
-                    <span className={stylesCaract}>Trailer Calmo</span>
-                    <span className={stylesCaract}>Salud Impecable</span>
-                    <span className={stylesCaract}>Pedigree Certificado</span>
-                </div>
             </div>
         </div>
     )

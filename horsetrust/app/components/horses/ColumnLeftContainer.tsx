@@ -6,6 +6,7 @@ import MiniaturaImage from "./MiniaturaImage"
 import ItemDetailHorse from "./ItemDetailHorse"
 import DocsContainer from "./DocsContainer"
 import styles from "./Horses.module.css"
+import VerificationBadge from "../gallery/VerificationBadge"
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -40,8 +41,8 @@ export default function ColumnLeftContainer({ horse, documents }: Props) {
   return (
     <div className="lg:col-span-2 space-y-8">
       <div className="flex items-center gap-3 mb-6">
-        <div className="fontCormorant bg-[rgb(var(--color-gold))] text-black px-4 py-2 text-xs uppercase tracking-wider font-medium">
-          ✓ Caballo {horse.verification_status}
+        <div className="fontCormorant bg-[rgb(var(--color-gold)/0.2)] text-black px-4 py-2 text-xs uppercase tracking-wider font-medium">
+          <VerificationBadge status={horse.verification_status} />
         </div>
         <div className="text-xs text-[rgb(var(--color-cream)/0.6)]">
           ID: {horse.id}
