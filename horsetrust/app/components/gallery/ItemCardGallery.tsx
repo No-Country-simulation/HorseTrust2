@@ -108,7 +108,7 @@ export default function ItemCardGallery({ horse }: Props) {
         <div className={`${styles.horseCard} group`}>
           <div className="relative fontMontserrat overflow-hidden aspect-[3/4] bg-[rgb(var(--color-teal)/0.2)] mb-4">
             <Image
-              src="/images/placeholder-horses.png"
+              src={horseImage}
               alt="Caballo"
               width={200}
               height={300}
@@ -159,39 +159,7 @@ export default function ItemCardGallery({ horse }: Props) {
                 </span>
             </div>
         </div>
-
-        <div className="space-y-2 p-4">
-          <div className="flex justify-between items-start py-4">
-            <h3 className="fontCormorant text-xl text-[rgb(var(--color-cream))] tracking-wide">
-              {horse.name}
-            </h3>
-
-            <div className="flex items-center gap-1 text-[rgb(var(--color-gold))] text-sm">
-              ★{" "}
-              <span className="fontMontserrat text-[rgb(var(--color-cream)/0.8)]">
-                {horse.rating || 0.0}
-              </span>
-            </div>
-          </div>
-
-          <p className="text-sm py-2 fontMontserrat text-[rgb(var(--color-cream)/0.6)] font-light">
-            {horse.breed} • {horse.age} años
-          </p>
-
-          <p className="text-xs fontMontserrat text-[rgb(var(--color-cream)/0.4)] uppercase tracking-wider">
-            {horse.discipline}
-          </p>
-
-          <div className="flex justify-between items-center pt-2">
-            <span className="fontCormorant text-[1.3rem] text-[rgb(var(--color-gold))]">
-              $ {horse.price || "Consultar precio"}
-            </span>
-
-            <span className="text-xs fontMontserrat text-[rgb(var(--color-cream)/0.4)]">
-              Buenos Aires
-            </span>
-          </div>
-        </div>
+        
       </div>
       <AuthModal
         isOpen={showModal}
