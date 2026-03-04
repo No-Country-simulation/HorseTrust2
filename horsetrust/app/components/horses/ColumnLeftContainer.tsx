@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import Image from "next/image"
 import MiniaturaImage from "./MiniaturaImage"
 import ItemDetailHorse from "./ItemDetailHorse"
@@ -8,18 +8,34 @@ import DocsContainer from "./DocsContainer"
 import styles from "./Horses.module.css"
 
 interface Props {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   horse: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   documents: any[]
 }
 
 export default function ColumnLeftContainer({ horse, documents }: Props) {
-  const images = [
-    "/images/placeholder-horses.png",
-    "/images/premium.jpg",
-    "/images/logo.png",
-  ]
+  const [selectedImage, setSelectedImage] = useState<string>("")
 
-  const [selectedImage, setSelectedImage] = useState(images[0])
+  // Calcular imágenes desde los documentos del caballo
+  const images = useMemo(() => {
+    if (documents && Array.isArray(documents)) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const imageDocuments = documents.filter((doc: any) => doc.type === 'image' && doc.url)
+
+      if (imageDocuments.length > 0) {
+        // Convertir URLs API a URLs públicas
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return imageDocuments.map((doc: any) =>
+          doc.url.replace('/api/v1/uploads/', '/uploads/')
+        )
+      }
+    }
+    return ["/images/placeholder-horses.png"]
+  }, [documents])
+
+  // Usar la primera imagen como inicial si no hay seleccionada
+  const displayImage = selectedImage || images[0] || "/images/placeholder-horses.png"
 
   return (
     <div className="lg:col-span-2 space-y-8">
@@ -32,13 +48,14 @@ export default function ColumnLeftContainer({ horse, documents }: Props) {
         </div>
       </div>
 
-      <div className="relative aspect-[4/3] bg-[rgb(var(--color-teal)/0.2)] overflow-hidden">
+      <div className="relative w-full bg-[rgb(var(--color-teal)/0.2)] flex items-center justify-center min-h-[400px]">
         <Image
-          src={selectedImage}
+          src={displayImage}
           width={1200}
           height={800}
           alt={horse.name}
-          className={`${styles.mainImage} w-full h-full object-cover`}
+          className={`${styles.mainImage} w-full h-auto object-contain max-h-[500px]`}
+          onError={() => setSelectedImage("")}
         />
       </div>
 
@@ -47,7 +64,7 @@ export default function ColumnLeftContainer({ horse, documents }: Props) {
           <MiniaturaImage
             key={index}
             src={img}
-            isActive={selectedImage === img}
+            isActive={displayImage === img}
             onClick={() => setSelectedImage(img)}
           />
         ))}
