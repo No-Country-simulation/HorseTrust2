@@ -1,0 +1,76 @@
+@HttpFiles_HotAddress = http://localhost:3000/api/v1
+@IdCaballo = c4ccabe5-f359-4708-b1d8-029af994f25b
+@IdVideo = xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+### ===============================
+### VIDEOS - VENDEDOR
+### ===============================
+
+### Subir Video (URL de YouTube)
+
+POST {{HttpFiles_HotAddress}}/horses/{{IdCaballo}}/videos
+Accept: application/json
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="video_url"
+
+https://www.youtube.com/watch?v=ejemplo123
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Listar Videos de un Caballo
+
+GET {{HttpFiles_HotAddress}}/horses/{{IdCaballo}}/videos
+Accept: application/json
+
+
+### ===============================
+### VIDEOS - ADMIN
+### ===============================
+
+### Listar todos los videos pendientes
+
+GET {{HttpFiles_HotAddress}}/admin/videos?status=pending
+Accept: application/json
+
+### Listar todos los videos verificados
+
+GET {{HttpFiles_HotAddress}}/admin/videos?status=verified
+Accept: application/json
+
+### Listar todos los videos rechazados
+
+GET {{HttpFiles_HotAddress}}/admin/videos?status=rejected
+Accept: application/json
+
+### Listar todos los videos (sin filtro)
+
+GET {{HttpFiles_HotAddress}}/admin/videos
+Accept: application/json
+
+### Ver detalle de un video
+
+GET {{HttpFiles_HotAddress}}/admin/videos/{{IdVideo}}
+Accept: application/json
+
+### Aprobar un video (verificar)
+
+PATCH {{HttpFiles_HotAddress}}/admin/videos/{{IdVideo}}/review
+Content-Type: application/json
+Accept: application/json
+
+{
+  "status": "verified"
+}
+
+### Rechazar un video (con motivo obligatorio)
+### Envía mensaje automático al vendedor vía chat
+
+PATCH {{HttpFiles_HotAddress}}/admin/videos/{{IdVideo}}/review
+Content-Type: application/json
+Accept: application/json
+
+{
+  "status": "rejected",
+  "reason": "El video no muestra claramente al caballo."
+}

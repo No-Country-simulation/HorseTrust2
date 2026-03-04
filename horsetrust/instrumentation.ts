@@ -17,6 +17,10 @@ export async function register() {
         const hashedPassword = await bcrypt.hash("admin", 10);
 
         const admin = repo.create({
+          first_name: "Admin",
+          last_name: "",
+          phone: "0000000000",
+          avatar_url: "/images/logo.png",
           email: "admin@admin.com",
           password: hashedPassword,
           role: Role.admin,

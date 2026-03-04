@@ -1,6 +1,6 @@
 import { getAuthUser } from "@/lib/auth/get-user-from-token"
 import { Horse } from "@/lib/database/entities/Horse"
-import { Discipline, HorseSaleStatus, Sex } from "@/lib/database/enums"
+import { Discipline, HorseSaleStatus, Sex, VerificationStatus } from "@/lib/database/enums"
 import { getRepository } from "@/lib/database/get-repository"
 import { validateEnumOrError } from "@/lib/errors/validate-enum"
 import { errorResponse, successResponse } from "@/lib/http/response-handler"
@@ -182,14 +182,12 @@ export const PATCH = withErrorHandler(async (
       })
     }
 
-    await repo.update(id, updates)
-
-    const updatedHorse = await repo.findOne({
-      where: { id },
-      relations: ["owner"],
+    await repo.update(id, {
+      ...updates,
+      verification_status: VerificationStatus.pending,
     })
 
-    return successResponse(null, "Caballo actualizado correctamente", 200)
+    return successResponse(null, "Caballo actualizado correctamente. Pendiente de aprobación.", 200)
 })
 
 // DELETE

@@ -3,6 +3,8 @@ import { redirect } from "next/navigation"
 import { verifyToken } from "@/lib/auth/jwt"
 import ItemDetailHorse from "@/app/components/horses/ItemDetailHorse"
 import DocsContainer from "@/app/components/horses/DocsContainer"
+import ColumnLeftContainer from "@/app/components/horses/ColumnLeftContainer"
+import VideoSection from "@/app/components/horses/VideoSection"
 import SellerDetail from "@/app/components/horses/SellerDetail"
 import VerificationStatusChanger from "../_components/VerificationStatusChanger"
 import Link from "next/link"
@@ -70,10 +72,10 @@ export default async function AdminHorseDetailPage({ params }: Props) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left column - Horse info & docs */}
+          {/* Left column - Images, horse info, videos & docs */}
           <div className="lg:col-span-2 space-y-8">
-            <ItemDetailHorse horse={horse} />
-            <DocsContainer documents={horse.documents ?? []} />
+            <ColumnLeftContainer horse={horse} documents={horse.documents ?? []} />
+            <VideoSection horseId={horse.id} showAll />
           </div>
 
           {/* Right column - Status changer & seller info */}

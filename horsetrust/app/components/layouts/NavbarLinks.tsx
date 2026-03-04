@@ -8,7 +8,7 @@ import NavbarChatBadge from './NavbarChatBadge'
 type Props = {
     stylesNavItems: string
     stylesSpan: string
-    authUser: unknown | null
+    authUser: { role?: string } | null
 }
 
 export default function NavbarLinks({ stylesNavItems, stylesSpan, authUser }: Props) {
@@ -86,6 +86,26 @@ export default function NavbarLinks({ stylesNavItems, stylesSpan, authUser }: Pr
       {authUser && (
         <>
           <NavbarChatBadge stylesNavItems={stylesNavItems} />
+
+          {authUser?.role === "admin" && (
+            <li>
+              <Link
+                href="/admin"
+                className={`${stylesNavItems} ${
+                  pathname.startsWith("/admin")
+                    ? "text-[rgb(var(--color-gold))]"
+                    : ""
+                }`}
+              >
+                Admin
+                <span
+                  className={`${stylesSpan} ${
+                    pathname.startsWith("/admin") ? "w-full" : ""
+                  }`}
+                />
+              </Link>
+            </li>
+          )}
 
           <li>
             <Link href="/me">
