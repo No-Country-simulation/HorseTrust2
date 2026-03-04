@@ -246,7 +246,7 @@ export default function Profile({ user, onUpdate }: ProfileProps) {
                 </div>
 
                 {/* Mis caballos - usar componente de galería */}
-                <div className="max-w-5xl mx-auto mt-10 px-4 sm:px-6">
+                <div className="max-w-7xl mx-auto mt-10 px-4 sm:px-6">
                     <h3 className="fontCormorant text-4xl sm:text-5xl font-light tracking-[0.125em] text-[rgb(var(--color-terracota))] mb-6 text-center leading-tight uppercase">
                         Mis Caballos
                     </h3>
