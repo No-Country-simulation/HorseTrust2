@@ -1,5 +1,4 @@
-'use server';
-import Link from "next/dist/client/link"
+import Link from "next/link"
 import Image from "next/image"
 import { getAuthUser } from "@/lib/auth/get-user-from-token"
 import LogoutButton from "@/app/components/logoutButton"

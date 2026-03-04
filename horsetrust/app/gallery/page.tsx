@@ -1,7 +1,7 @@
 import GalleryContainer from "@/app/components/gallery/GalleryContainer"
 
 async function getHorses() {
-  const res = await fetch("http://localhost:3000/api/v1/horses?status=for_sale", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/horses?status=for_sale&verification_status=verified`, {
     cache: "no-store",
   })
 

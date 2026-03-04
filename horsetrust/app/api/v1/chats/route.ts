@@ -37,6 +37,11 @@ export const GET = withErrorHandler(async () => {
       (a, b) =>
         new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
     );
+
+    const unreadCount = (chat.messages ?? []).filter(
+      (m) => m.sender_id !== authUser.userId && !m.read_at
+    ).length;
+
     return {
       id: chat.id,
       buyer: {
@@ -54,6 +59,7 @@ export const GET = withErrorHandler(async () => {
       is_active: chat.is_active,
       created_at: chat.created_at,
       lastMessage: sorted?.[0] || null,
+      unreadCount,
     };
   });
 

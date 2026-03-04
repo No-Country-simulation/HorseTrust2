@@ -1,3 +1,5 @@
+import { sexLabel, disciplineLabel } from '@/lib/translations/enums';
+
 interface Props {
   horse: any
 }
@@ -12,6 +14,7 @@ export default function ItemDetailHorse({ horse }: Props){
                 <span className="text-[rgb(var(--color-gold))] text-xl">◆</span>
                 <h2 className="fontCormorant text-3xl text-[rgb(var(--color-gold))] uppercase tracking-wide">Información del Caballo</h2>
             </div>
+            <h1 className="fontCormorant text-4xl text-[rgb(var(--color-cream))] mt-4 mb-2">{horse.name}</h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -24,7 +27,7 @@ export default function ItemDetailHorse({ horse }: Props){
                 </div>
                 <div>
                     <div className={stylesTitleItem}>Sexo</div>
-                    <div className={stylesValueItem}>{horse.sex || "Desconocido"}</div>
+                    <div className={stylesValueItem}>{sexLabel[horse.sex as keyof typeof sexLabel] || "Desconocido"}</div>
                 </div>
                 <div>
                     <div className={stylesTitleItem}>Color</div>
@@ -36,7 +39,7 @@ export default function ItemDetailHorse({ horse }: Props){
                 </div>
                 <div>
                     <div className={stylesTitleItem}>Disciplina</div>
-                    <div className={stylesValueItem}>{horse.discipline || "Desconocida"}</div>
+                    <div className={stylesValueItem}>{disciplineLabel[horse.discipline as keyof typeof disciplineLabel] || "Desconocida"}</div>
                 </div>
                 <div>
                     <div className={stylesTitleItem}>Ubicación</div>

@@ -198,7 +198,6 @@ useEffect(() => {
                         id: editingReview.id,
                         rating: editingReview.rating,
                         comment: editingReview.comment,
-                        sale_id: editingReview.sale_id ?? "",
                     } : null}
                     onClose={() => { setShowForm(false); setEditingReview(null) }}
                     onSaved={handleFormSaved}

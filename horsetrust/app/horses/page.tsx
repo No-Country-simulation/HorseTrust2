@@ -1,4 +1,3 @@
-'use server'
 import { getAuthUser } from '@/lib/auth/get-user-from-token'
 import HorseCard, { HorseCardProps } from '../components/horses/HorseCard'
 
