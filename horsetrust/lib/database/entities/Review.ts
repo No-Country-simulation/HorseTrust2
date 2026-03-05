@@ -14,12 +14,12 @@ export class Review {
     @PrimaryGeneratedColumn('uuid')
     id!: string;
 
-    @ManyToOne('Sale', 'reviews', { onDelete: 'CASCADE' })
+    @ManyToOne('Sale', 'reviews', { onDelete: 'CASCADE', nullable: true })
     @JoinColumn({ name: 'sale_id' })
-    sale!: Sale;
+    sale?: Sale | null;
 
-    @Column({ type: 'uuid', name: 'sale_id' })
-    sale_id!: string;
+    @Column({ type: 'uuid', name: 'sale_id', nullable: true })
+    sale_id?: string | null;
 
     @ManyToOne('User', 'reviews_received', { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'seller_id' })

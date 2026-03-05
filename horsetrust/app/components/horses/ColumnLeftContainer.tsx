@@ -5,6 +5,7 @@ import Image from "next/image"
 import MiniaturaImage from "./MiniaturaImage"
 import ItemDetailHorse from "./ItemDetailHorse"
 import DocsContainer from "./DocsContainer"
+import VideoSection from "./VideoSection"
 import styles from "./Horses.module.css"
 import VerificationBadge from "../gallery/VerificationBadge"
 
@@ -76,6 +77,8 @@ export default function ColumnLeftContainer({ horse, documents }: Props) {
       <DocsContainer
         documents={documents}
       />
+
+      <VideoSection horseId={horse.id} />
     </div>
   )
 }

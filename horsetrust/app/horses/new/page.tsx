@@ -5,7 +5,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
-import { Sex, Discipline, TypeDocument, Category, DocumentPurpose } from "@/lib/database/enums";
+import { Sex, Discipline, Category, DocumentPurpose } from "@/lib/database/enums";
+import { sexLabel, disciplineLabel, categoryLabel, documentPurposeLabel } from "@/lib/translations/enums";
 
 const horseSchema = z.object({
     name: z.string().min(1, "El nombre es obligatorio"),
@@ -27,6 +28,7 @@ export default function NewHorsePage() {
     const [uploading, setUploading] = useState(false);
     const [uploadMsg, setUploadMsg] = useState<string | null>(null);
     const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState<string>("");
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm<HorseValues>({
         resolver: zodResolver(horseSchema),
@@ -61,6 +63,14 @@ export default function NewHorsePage() {
         if (!createdHorseId) return;
         const form = e.currentTarget;
         const fd = new FormData(form);
+        const file = fd.get('file') as File | null;
+        if (file) {
+            const ext = file.name.split('.').pop()?.toLowerCase() ?? '';
+            const videoExts = ['mp4', 'avi', 'mov', 'webm', 'mkv'];
+            const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'];
+            const detectedType = videoExts.includes(ext) ? 'video' : imageExts.includes(ext) ? 'image' : 'document';
+            fd.append('type', detectedType);
+        }
         setUploading(true);
         setUploadMsg(null);
         try {
@@ -112,21 +122,24 @@ export default function NewHorsePage() {
                             <div>
                                 <select {...register('sex')} className="w-full p-4 bg-white border border-slate-300 rounded-2xl">
                                     <option value="">Sexo</option>
-                                    {Object.values(Sex).map(s => <option key={s} value={s}>{s}</option>)}
+                                    {Object.values(Sex).map(s => <option key={s} value={s}>{sexLabel[s]}</option>)}
                                 </select>
                                 {errors.sex && <p className="text-red-500 text-xs mt-1">{errors.sex.message}</p>}
                             </div>
                         </div>
 
                         <div>
-                            <input {...register('breed')} placeholder="Raza" className="w-full p-4 bg-white border border-slate-300 rounded-2xl" />
+                            <select {...register('breed')} className="w-full p-4 bg-white border border-slate-300 rounded-2xl">
+                                <option value="">Seleccionar raza...</option>
+                                {['Pura Sangre','Cuarto de Milla','Árabe','Appaloosa','Paso Fino','Frisón','Andaluz','Lusitano','Hannoveriano','Holsteiner','Criollo','Percherón','Mustang','Morgan','Tennessee Walker','Thoroughbred','Paint Horse','Palomino','Pinto','Otra'].map(b => <option key={b} value={b}>{b}</option>)}
+                            </select>
                             {errors.breed && <p className="text-red-500 text-xs mt-1">{errors.breed.message}</p>}
                         </div>
 
                         <div>
                             <select {...register('discipline')} className="w-full p-4 bg-white border border-slate-300 rounded-2xl">
                                 <option value="">Disciplina</option>
-                                {Object.values(Discipline).map(d => <option key={d} value={d}>{d}</option>)}
+                                {Object.values(Discipline).map(d => <option key={d} value={d}>{disciplineLabel[d]}</option>)}
                             </select>
                             {errors.discipline && <p className="text-red-500 text-xs mt-1">{errors.discipline.message}</p>}
                         </div>
@@ -174,26 +187,48 @@ export default function NewHorsePage() {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-2">
-                                <select name="type" className="p-3 border rounded-2xl">
-                                    <option value="">Tipo</option>
-                                    {Object.values(TypeDocument).map(t => <option key={t} value={t}>{t}</option>)}
-                                </select>
-
-                                <select name="category" className="p-3 border rounded-2xl">
+                            <div>
+                                <select name="category" className="w-full p-3 border rounded-2xl" onChange={(e) => setSelectedCategory(e.target.value)}>
                                     <option value="">Categoría</option>
-                                    {Object.values(Category).map(c => <option key={c} value={c}>{c}</option>)}
+                                    {Object.values(Category).map(c => <option key={c} value={c}>{categoryLabel[c]}</option>)}
                                 </select>
                             </div>
 
                             <div>
                                 <select name="role" className="p-3 border rounded-2xl">
                                     <option value="">Rol (purpose)</option>
-                                    {Object.values(DocumentPurpose).map(p => <option key={p} value={p}>{p}</option>)}
+                                    {Object.values(DocumentPurpose).map(p => <option key={p} value={p}>{documentPurposeLabel[p]}</option>)}
                                 </select>
                             </div>
 
-                            <div className="text-sm text-slate-600">Si subís un documento veterinario completá los campos requeridos en el formulario tras subirlo (fecha, vet, tipo/resultado).</div>
+                            {selectedCategory === Category.veterinary && (
+                                <div className="space-y-3 p-4 border border-slate-300 rounded-2xl">
+                                    <div>
+                                        <label className="block text-sm font-medium mb-1">Fecha del examen</label>
+                                        <input type="date" name="issuedAt" className="w-full p-3 border border-slate-300 rounded-2xl" />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium mb-1">Nombre del veterinario</label>
+                                        <input type="text" name="vetName" className="w-full p-3 border border-slate-300 rounded-2xl" />
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        <div>
+                                            <label className="block text-sm font-medium mb-1">Tipo de examen</label>
+                                            <select name="examType" className="w-full p-3 border border-slate-300 rounded-2xl">
+                                                <option value="basic">Básico</option>
+                                                <option value="advanced">Avanzado</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium mb-1">Resultado</label>
+                                            <select name="examResult" className="w-full p-3 border border-slate-300 rounded-2xl">
+                                                <option value="apt">Apto</option>
+                                                <option value="with_observations">Con Observaciones</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
 
                             {uploadMsg && <div className="p-3 rounded-md bg-slate-50">{uploadMsg}</div>}
 

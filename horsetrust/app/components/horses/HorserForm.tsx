@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Sex, Discipline } from '@/lib/database/enums';
+import { sexLabel, disciplineLabel } from '@/lib/translations/enums';
 
 const HorseForm = () => {
   const [loading, setLoading] = useState(false);
@@ -103,7 +104,7 @@ const HorseForm = () => {
                 className="w-full px-4 py-3 bg-[#F9F9F7] border border-[#D4C7B0] rounded focus:ring-2 focus:ring-[#C5A059] outline-none transition-all cursor-pointer"
               >
                 {Object.values(Sex).map(val => (
-                  <option key={val} value={val}>{val.toUpperCase()}</option>
+                  <option key={val} value={val}>{sexLabel[val]}</option>
                 ))}
               </select>
             </div>
@@ -121,7 +122,7 @@ const HorseForm = () => {
               className="w-full px-4 py-3 bg-[#F9F9F7] border border-[#D4C7B0] rounded focus:ring-2 focus:ring-[#C5A059] outline-none transition-all cursor-pointer"
             >
               {Object.values(Discipline).map(val => (
-                <option key={val} value={val}>{val.replace('_', ' ').toUpperCase()}</option>
+                <option key={val} value={val}>{disciplineLabel[val]}</option>
               ))}
             </select>
           </div>
@@ -131,14 +132,17 @@ const HorseForm = () => {
             <label className="block text-xs font-bold uppercase tracking-widest text-[#1B3022] mb-2">
               Raza (Opcional)
             </label>
-            <input
-              type="text"
+            <select
               name="breed"
               value={formData.breed}
               onChange={handleChange}
-              placeholder="Ej: Paso Fino"
-              className="w-full px-4 py-3 bg-[#F9F9F7] border border-[#D4C7B0] rounded focus:ring-2 focus:ring-[#C5A059] outline-none transition-all"
-            />
+              className="w-full px-4 py-3 bg-[#F9F9F7] border border-[#D4C7B0] rounded focus:ring-2 focus:ring-[#C5A059] outline-none transition-all cursor-pointer"
+            >
+              <option value="">Seleccionar raza...</option>
+              {['Pura Sangre','Cuarto de Milla','Árabe','Appaloosa','Paso Fino','Frisón','Andaluz','Lusitano','Hannoveriano','Holsteiner','Criollo','Percherón','Mustang','Morgan','Tennessee Walker','Thoroughbred','Paint Horse','Palomino','Pinto','Otra'].map(b => (
+                <option key={b} value={b}>{b}</option>
+              ))}
+            </select>
           </div>
 
           {/* Feedback */}

@@ -45,17 +45,15 @@ export default async function HorseDetailPage({ params }: Props) {
   const cookieStore = await cookies()
   const token = cookieStore.get("token")?.value
 
-
-  if (!token) {
-    redirect("/login")
-  }
-
   let currentUserId: string | null = null
-  try {
-    const payload = verifyToken(token)
-    currentUserId = payload.userId
-  } catch {
-    redirect("/login")
+
+  if (token) {
+    try {
+      const payload = verifyToken(token)
+      currentUserId = payload.userId
+    } catch {
+      currentUserId = null
+    }
   }
 
   if (!id) {
@@ -68,7 +66,9 @@ export default async function HorseDetailPage({ params }: Props) {
     return <div>Caballo no encontrado</div>
   }
 
-  const documents = await getHorseDocuments(id, token)
+  const documents = token
+    ? await getHorseDocuments(id, token)
+    : []
 
   const isOwner = currentUserId === horse.owner?.id
 

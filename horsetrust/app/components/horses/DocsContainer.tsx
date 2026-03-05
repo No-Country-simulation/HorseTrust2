@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import DocsItem from "./DocsItem"
+import { categoryLabel, documentPurposeLabel } from "@/lib/translations/enums"
 
 interface Props {
   documents: any[]
@@ -37,7 +38,7 @@ export default function DocsContainer({ documents }: Props) {
                     {documents.map((doc) => (
                         <DocsItem
                         key={doc.id}
-                        title={`${doc.category} - ${doc.purpose}`}
+                        title={`${categoryLabel[doc.category as keyof typeof categoryLabel] || doc.category} - ${documentPurposeLabel[doc.purpose as keyof typeof documentPurposeLabel] || doc.purpose}`}
                         info={`Subido el: ${new Date(doc.created_at).toLocaleDateString()}`}
                         url={`${process.env.NEXT_PUBLIC_BASE_URL}${doc.url}`}
                         onPreview={(url) => setSelectedDoc(url)}
