@@ -15,7 +15,7 @@ export  async function NavbarContainer() {
         <nav className="fixed bg-gradient-to-b from-black/80 to-transparent top-0 left-0 w-full px-8 lg:px-16 py-3 flex justify-between items-center z-50 backdrop-blur-lg">
 
             <Link href="/" className="flex items-center gap-3">
-                <Image src="/images/logo.png" alt="Logo HorseTrust" width={70} height={70} />
+                <Image src="/images/logoh.png" alt="Logo HorseTrust" width={70} height={70} />
                 <h2 className="fontCormorant text-[rgb(var(--color-cream))] text-3xl">
                     Horse Trust
                 </h2>
