@@ -17,17 +17,29 @@ export default function BannerContainer() {
 
       <div className="relative items-center justify-center z-10 text-center w-full">
 
-        <div className="fontMontserrat text-xs tracking-[0.375em] text-[rgb(var(--color-gold))] mb-6 uppercase font-normal opacity-0 animate-fade-in-up" style={animacion(0.3)} >
-          — Venta de Caballos Verificados —
+        <div className="fontMontserrat text-xs tracking-[0.375em] text-[rgb(var(--color-gold))] mb-6 uppercase font-normal opacity-0 animate-fade-in-up px-2" style={animacion(0.3)} >
+          —<br/> Venta de Caballos Verificados <br/>—
         </div>
 
-        <div className="flex w-full justify-center items-center animate-fade-in-up text-[rgb(var(--color-cream))]">
-            <Image src="/images/banner.jpg" alt="Caballo mirando de costado" width={440} height={440} className=" hidden s:block animate-fade-in-up "/>         
-            <h1 className="fontCormorant px-4 text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-[0.125em] leading-tight uppercase opacity-0 animate-fade-in-up" style={animacion(0.6)} >
-            Conectamos<br />Confianza
+        <div className="flex flex-col md:flex-row w-full justify-center items-center text-[rgb(var(--color-cream))]">
+
+            <Image
+                src="/images/banner.jpg"
+                alt="Caballo mirando de costado"
+                width={440}
+                height={440}
+                className="hidden md:block animate-fade-in-up"
+            />
+
+            <h1
+                className="fontCormorant px-4 text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-[0.125em] leading-tight uppercase opacity-0 animate-fade-in-up"
+                style={animacion(0.6)}
+            >
+                Conectamos<br />Confianza
             </h1>
 
         </div>
+
 
 
         <p className="text-lg fontMontserrat text-center font-light tracking-wide py-6 leading-relaxed text-[rgb(var(--color-cream)/0.8)] opacity-0 animate-fade-in-up" style={animacion(0.9)} >
