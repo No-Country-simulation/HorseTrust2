@@ -1,5 +1,6 @@
 import React from "react"
 import Image from "next/image"
+import Link from "next/link"
 
 
 export default function BannerContainer() {
@@ -48,12 +49,12 @@ export default function BannerContainer() {
           Verificamos cada detalle para que compres con total seguridad.
         </p>
 
-        <a href="#explorar" className="inline-block px-12 py-5  bg-transparent border-2 border-[rgb(var(--color-cream))] text-[rgb(var(--color-cream))] text-xs tracking-[0.1875em] uppercase no-underline transition-all duration-400 relative overflow-hidden group opacity-0 animate-fade-in-up" style={animacion(1.2)}>
+        <Link href="/gallery" className="inline-block px-12 py-5  bg-transparent border-2 border-[rgb(var(--color-cream))] text-[rgb(var(--color-cream))] text-xs tracking-[0.1875em] uppercase no-underline transition-all duration-400 relative overflow-hidden group opacity-0 animate-fade-in-up" style={animacion(1.2)}>
             <span className="absolute top-0 left-[-100%] w-full h-full bg-[rgb(var(--color-cream))] transition-all duration-400 z-[-1] group-hover:left-0"></span>
             <span className="relative z-10 group-hover:text-black transition-colors duration-400">
                 Explorar Plataforma
             </span>
-        </a>
+        </Link>
 
       </div>
     </section>
