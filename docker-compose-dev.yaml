@@ -1,14 +1,17 @@
 services:
+  
   # Next.js App
   app:
     build:
       context: horsetrust/
     container_name: horsetrust-app
     restart: unless-stopped
+    ports:
+      - "${APP_PORT:-3000}:3000"
     environment:
       NODE_ENV: production
       DATABASE_HOST: postgres
-      DATABASE_PORT: ${POSTGRES_PORT}
+      DATABASE_PORT: 5432
       DATABASE_USER: ${POSTGRES_USER}
       DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
       DATABASE_NAME: ${POSTGRES_DB}
@@ -24,6 +27,8 @@ services:
     image: postgres:17-alpine
     container_name: horsetrust-db
     restart: unless-stopped
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -39,17 +44,18 @@ services:
     networks:
       - horsetrust-network
 
-  # Nginx Reverse Proxy
-  nginx:
-    image: nginx:alpine
-    container_name: horsetrust-proxy
+  # pgAdmin
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: horsetrust-pgadmin
     restart: unless-stopped
     ports:
-      - "80:80"
-    volumes:
-      - ./horsetrust/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - "${PGADMIN_PORT:-5050}:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     depends_on:
-      - app
+      - postgres
     networks:
       - horsetrust-network
 
