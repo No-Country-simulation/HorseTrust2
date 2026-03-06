@@ -132,7 +132,6 @@ export default function NewHorsePage() {
 
                     {!createdHorseId ? (
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                            {/* Name */}
                             <div className="space-y-2">
                                 <label className={styleLabel}>
                                     Nombre del Caballo *
@@ -145,7 +144,6 @@ export default function NewHorsePage() {
                                 {errors.name && <p className={styleError}>{errors.name.message}</p>}
                             </div>
 
-                            {/* Age & Sex */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className={styleLabel}>
@@ -175,7 +173,6 @@ export default function NewHorsePage() {
                                 </div>
                             </div>
 
-                            {/* Breed */}
                             <div className="space-y-2">
                                 <label className={styleLabel}>
                                     Raza *
@@ -192,7 +189,6 @@ export default function NewHorsePage() {
                                 {errors.breed && <p className={styleError}>{errors.breed.message}</p>}
                             </div>
 
-                            {/* Discipline */}
                             <div className="space-y-2">
                                 <label className={styleLabel}>
                                     Disciplina *
@@ -207,7 +203,6 @@ export default function NewHorsePage() {
                                 {errors.discipline && <p className={styleError}>{errors.discipline.message}</p>}
                             </div>
 
-                            {/* Price */}
                             <div className="space-y-2">
                                 <label className={styleLabel}>
                                     Precio <span className="text-[rgb(var(--color-cream)/0.5)]">(Opcional)</span>
@@ -220,14 +215,12 @@ export default function NewHorsePage() {
                                 />
                             </div>
 
-                            {/* Error message */}
                             {errorMsg && (
                                 <div className="p-4 bg-[rgb(var(--color-terracotta)/0.1)] border border-[rgb(var(--color-terracotta)/0.3)]">
                                     <p className="text-sm text-[rgb(var(--color-cream)/0.8)] font-light">{errorMsg}</p>
                                 </div>
                             )}
 
-                            {/* Buttons */}
                             <div className="flex flex-col sm:flex-row gap-4 pt-4">
                                 <button 
                                     type="submit" 
@@ -251,14 +244,12 @@ export default function NewHorsePage() {
                         </form>
                     ) : (
                         <div className="fotnMontserrat space-y-8">
-                            {/* Success message */}
                             <div className="fontMontserrat p-6 flex flex-col items-center justify-center bg-[rgb(var(--color-teal)/0.2)] border border-[rgb(var(--color-teal)/0.4)] text-center">
                                 <Check width={70} height={70} className="text-10xl mb-3 text-[rgb(var(--color-gold))]" />
                                 <p className="text-[rgb(var(--color-cream))] font-medium mb-2">Caballo creado exitosamente</p>
                                 <p className="text-[rgb(var(--color-cream)/0.6)] text-xs">ID: {createdHorseId}</p>
                             </div>
 
-                            {/* Upload Form */}
                             <form onSubmit={handleUpload} className="space-y-6">
                                 <div className="text-center mb-6">
                                     <h3 className="fontCormorant text-2xl text-[rgb(var(--color-gold))] uppercase tracking-wide mb-2">
@@ -269,7 +260,6 @@ export default function NewHorsePage() {
                                     </p>
                                 </div>
 
-                                {/* File Upload */}
                                 <div className="space-y-3">
                                     <label className={styleLabel}>
                                         Archivo
@@ -306,7 +296,6 @@ export default function NewHorsePage() {
                                     )}
                                 </div>
 
-                                {/* Category */}
                                 <div className="space-y-2">
                                     <label className={styleLabel}>
                                         Categoría
@@ -321,7 +310,6 @@ export default function NewHorsePage() {
                                     </select>
                                 </div>
 
-                                {/* Purpose/Role */}
                                 <div className="space-y-2">
                                     <label className={styleLabel}>
                                         Propósito
@@ -335,7 +323,6 @@ export default function NewHorsePage() {
                                     </select>
                                 </div>
 
-                                {/* Veterinary Details (conditional) */}
                                 {selectedCategory === Category.veterinary && (
                                     <div className="space-y-4 p-6 bg-[rgb(var(--color-teal)/0.1)] border border-[rgb(var(--color-teal)/0.3)]">
                                         <h4 className="text-sm uppercase tracking-wider text-[rgb(var(--color-teal))] font-medium mb-4">
@@ -395,14 +382,12 @@ export default function NewHorsePage() {
                                     </div>
                                 )}
 
-                                {/* Upload message */}
                                 {uploadMsg && (
                                     <div className="p-4 bg-[rgb(var(--color-cream)/0.05)] border border-[rgb(var(--color-cream)/0.2)]">
                                         <p className="text-sm text-[rgb(var(--color-cream)/0.8)] font-light">{uploadMsg}</p>
                                     </div>
                                 )}
 
-                                {/* Action Buttons */}
                                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                                     <button 
                                         type="submit" 
