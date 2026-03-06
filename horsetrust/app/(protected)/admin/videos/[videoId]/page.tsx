@@ -1,53 +1,53 @@
-import { cookies } from "next/headers"
-import { redirect } from "next/navigation"
-import { verifyToken } from "@/lib/auth/jwt"
-import VideoPlayer from "@/app/components/horses/VideoPlayer"
-import VideoReviewChanger from "../_components/VideoReviewChanger"
-import Link from "next/link"
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { verifyToken } from "@/lib/auth/jwt";
+import { getBaseUrl } from "@/lib/get-base-url";
+import VideoPlayer from "@/app/components/horses/VideoPlayer";
+import VideoReviewChanger from "../_components/VideoReviewChanger";
+import Link from "next/link";
 
 interface Props {
-  params: Promise<{ videoId: string }>
+  params: Promise<{ videoId: string }>;
 }
 
 async function getVideoAdmin(videoId: string, token: string) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/admin/videos/${videoId}`,
-    {
-      cache: "no-store",
-      headers: { Cookie: `token=${token}` },
-    }
-  )
-  if (!res.ok) return null
-  const data = await res.json()
-  return data.data
+  const res = await fetch(`${getBaseUrl()}/api/v1/admin/videos/${videoId}`, {
+    cache: "no-store",
+    headers: { Cookie: `token=${token}` },
+  });
+  if (!res.ok) return null;
+  const data = await res.json();
+  return data.data;
 }
 
 export default async function AdminVideoDetailPage({ params }: Props) {
-  const { videoId } = await params
+  const { videoId } = await params;
 
-  const cookieStore = await cookies()
-  const token = cookieStore.get("token")?.value
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
 
-  if (!token) redirect("/login")
+  if (!token) redirect("/login");
 
   try {
-    verifyToken(token)
+    verifyToken(token);
   } catch {
-    redirect("/login")
+    redirect("/login");
   }
 
-  const video = await getVideoAdmin(videoId, token)
+  const video = await getVideoAdmin(videoId, token);
 
   if (!video) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
-        <p className="text-[rgb(var(--color-cream))] fontMontserrat">Video no encontrado</p>
+        <p className="text-[rgb(var(--color-cream))] fontMontserrat">
+          Video no encontrado
+        </p>
       </div>
-    )
+    );
   }
 
-  const horse = video.horse || {}
-  const seller = video.user || {}
+  const horse = video.horse || {};
+  const seller = video.user || {};
 
   return (
     <div className="min-h-screen bg-black text-[rgb(var(--color-cream))] py-8 px-4 lg:px-16">
@@ -88,16 +88,28 @@ export default async function AdminVideoDetailPage({ params }: Props) {
               </div>
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span className="fontMontserrat text-xs text-[rgb(var(--color-cream)/0.5)] uppercase tracking-wider">Nombre</span>
-                  <span className="fontCormorant text-lg text-[rgb(var(--color-cream))]">{horse.name || "—"}</span>
+                  <span className="fontMontserrat text-xs text-[rgb(var(--color-cream)/0.5)] uppercase tracking-wider">
+                    Nombre
+                  </span>
+                  <span className="fontCormorant text-lg text-[rgb(var(--color-cream))]">
+                    {horse.name || "—"}
+                  </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="fontMontserrat text-xs text-[rgb(var(--color-cream)/0.5)] uppercase tracking-wider">Raza</span>
-                  <span className="fontMontserrat text-sm text-[rgb(var(--color-cream)/0.7)]">{horse.breed || "—"}</span>
+                  <span className="fontMontserrat text-xs text-[rgb(var(--color-cream)/0.5)] uppercase tracking-wider">
+                    Raza
+                  </span>
+                  <span className="fontMontserrat text-sm text-[rgb(var(--color-cream)/0.7)]">
+                    {horse.breed || "—"}
+                  </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="fontMontserrat text-xs text-[rgb(var(--color-cream)/0.5)] uppercase tracking-wider">Edad</span>
-                  <span className="fontMontserrat text-sm text-[rgb(var(--color-cream)/0.7)]">{horse.age != null ? `${horse.age} años` : "—"}</span>
+                  <span className="fontMontserrat text-xs text-[rgb(var(--color-cream)/0.5)] uppercase tracking-wider">
+                    Edad
+                  </span>
+                  <span className="fontMontserrat text-sm text-[rgb(var(--color-cream)/0.7)]">
+                    {horse.age != null ? `${horse.age} años` : "—"}
+                  </span>
                 </div>
               </div>
             </div>
@@ -112,14 +124,22 @@ export default async function AdminVideoDetailPage({ params }: Props) {
               </div>
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span className="fontMontserrat text-xs text-[rgb(var(--color-cream)/0.5)] uppercase tracking-wider">Nombre</span>
+                  <span className="fontMontserrat text-xs text-[rgb(var(--color-cream)/0.5)] uppercase tracking-wider">
+                    Nombre
+                  </span>
                   <span className="fontMontserrat text-sm text-[rgb(var(--color-cream))]">
-                    {[seller.first_name, seller.last_name].filter(Boolean).join(" ") || "—"}
+                    {[seller.first_name, seller.last_name]
+                      .filter(Boolean)
+                      .join(" ") || "—"}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="fontMontserrat text-xs text-[rgb(var(--color-cream)/0.5)] uppercase tracking-wider">Email</span>
-                  <span className="fontMontserrat text-sm text-[rgb(var(--color-cream)/0.7)]">{seller.email || "—"}</span>
+                  <span className="fontMontserrat text-xs text-[rgb(var(--color-cream)/0.5)] uppercase tracking-wider">
+                    Email
+                  </span>
+                  <span className="fontMontserrat text-sm text-[rgb(var(--color-cream)/0.7)]">
+                    {seller.email || "—"}
+                  </span>
                 </div>
               </div>
             </div>
@@ -136,5 +156,5 @@ export default async function AdminVideoDetailPage({ params }: Props) {
         </div>
       </div>
     </div>
-  )
+  );
 }

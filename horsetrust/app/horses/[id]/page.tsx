@@ -1,78 +1,72 @@
-import { redirect } from "next/navigation"
-import HorseDetailContainer from "@/app/components/horses/HorseDetailContainer"
-import { cookies } from "next/headers"
-import { verifyToken } from "@/lib/auth/jwt"
+import { redirect } from "next/navigation";
+import HorseDetailContainer from "@/app/components/horses/HorseDetailContainer";
+import { cookies } from "next/headers";
+import { verifyToken } from "@/lib/auth/jwt";
+import { getBaseUrl } from "@/lib/get-base-url";
 
 interface Props {
   params: Promise<{
-    id: string
-  }>
+    id: string;
+  }>;
 }
 
-
 async function getHorse(id: string) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/horses/${id}`,
-    { cache: "no-store" }
-  )
+  const res = await fetch(`${getBaseUrl()}/api/v1/horses/${id}`, {
+    cache: "no-store",
+  });
 
-  if (!res.ok) return null
+  if (!res.ok) return null;
 
-  const data = await res.json()
-  console.log(data)
+  const data = await res.json();
+  console.log(data);
 
-  return data.data
+  return data.data;
 }
 
 async function getHorseDocuments(id: string, token: string) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/horses/${id}/documents`,
-    {
-      cache: "no-store",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  )
+  const res = await fetch(`${getBaseUrl()}/api/v1/horses/${id}/documents`, {
+    cache: "no-store",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-  if (!res.ok) return []
+  if (!res.ok) return [];
 
-  const data = await res.json()
-  return data.data
+  const data = await res.json();
+  return data.data;
 }
 
 export default async function HorseDetailPage({ params }: Props) {
-  const { id } = await params
+  const { id } = await params;
 
-  const cookieStore = await cookies()
-  const token = cookieStore.get("token")?.value
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
 
-  let currentUserId: string | null = null
+  let currentUserId: string | null = null;
 
   if (token) {
     try {
-      const payload = verifyToken(token)
-      currentUserId = payload.userId
+      const payload = verifyToken(token);
+      currentUserId = payload.userId;
     } catch {
-      currentUserId = null
+      currentUserId = null;
     }
   }
 
   if (!id) {
-    return <div>ID inválido</div>
+    return <div>ID inválido</div>;
   }
 
-  const horse = await getHorse(id)
+  const horse = await getHorse(id);
 
   if (!horse) {
-    return <div>Caballo no encontrado</div>
+    return <div>Caballo no encontrado</div>;
   }
 
-  const documents = token
-    ? await getHorseDocuments(id, token)
-    : []
+  const documents = token ? await getHorseDocuments(id, token) : [];
 
-  const isOwner = currentUserId === horse.owner?.id
+  const isOwner = currentUserId === horse.owner?.id;
 
   return (
     <HorseDetailContainer
@@ -80,5 +74,5 @@ export default async function HorseDetailPage({ params }: Props) {
       documents={documents}
       isOwner={isOwner}
     />
-  )
+  );
 }
