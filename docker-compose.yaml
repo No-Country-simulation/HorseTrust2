@@ -1,6 +1,7 @@
 services:
   # Next.js App
   app:
+    image: ghcr.io/no-country-simulation/horsetrust2/horsetrust:latest
     build:
       context: horsetrust/
     container_name: horsetrust-app
