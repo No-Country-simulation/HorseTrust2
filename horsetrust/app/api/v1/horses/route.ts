@@ -169,6 +169,9 @@ export const POST = withErrorHandler(async (req: Request) => {
         breed: body.breed,
         price: body.price,
         discipline: body.discipline,
+        color: body.color,
+        height: body.height,
+        description: body.description
     })
 
     await repo.save(horse)

@@ -14,6 +14,9 @@ const horseSchema = z.object({
     age: z.number().min(0, "Edad inválida"),
     breed: z.string().min(1, "La raza es obligatoria"),
     price: z.number().optional(),
+    color: z.string().min(1, "El color es obligatorio"),
+    height: z.number().min(0, "Altura inválida"),
+    description: z.string().max(500, "Máximo 500 caracteres").optional(),
     sex: z.nativeEnum(Sex),
     discipline: z.nativeEnum(Discipline),
 });
@@ -189,6 +192,36 @@ export default function NewHorsePage() {
                                 {errors.breed && <p className={styleError}>{errors.breed.message}</p>}
                             </div>
 
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+                                <div className="space-y-2">
+                                    <label className={styleLabel}>
+                                        Color *
+                                    </label>
+                                    <input
+                                        {...register('color')}
+                                        placeholder="Ejemplo: Alazán"
+                                        className={styleInput}
+                                    />
+                                    {errors.color && <p className={styleError}>{errors.color.message}</p>}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className={styleLabel}>
+                                        Altura (cm) *
+                                    </label>
+                                    <input
+                                        {...register('height', { valueAsNumber: true })}
+                                        type="number"
+                                        placeholder="165"
+                                        className={styleInput}
+                                    />
+                                    {errors.height && <p className={styleError}>{errors.height.message}</p>}
+                                </div>
+
+                            </div>
+
+
                             <div className="space-y-2">
                                 <label className={styleLabel}>
                                     Disciplina *
@@ -213,6 +246,23 @@ export default function NewHorsePage() {
                                     placeholder="85000"
                                     className={styleInput} 
                                 />
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className={styleLabel}>
+                                    Descripción
+                                </label>
+
+                                <textarea
+                                    {...register('description')}
+                                    rows={4}
+                                    placeholder="Descripción del caballo, temperamento, entrenamiento, etc."
+                                    className={`${styleInput} resize-none`}
+                                />
+
+                                {errors.description && (
+                                    <p className={styleError}>{errors.description.message}</p>
+                                )}
                             </div>
 
                             {errorMsg && (
