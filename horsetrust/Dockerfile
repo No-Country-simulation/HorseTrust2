@@ -36,6 +36,11 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Copiamos los archivos de base de datos fuera del bundle para que
+# los externals de webpack sean resolvibles en runtime por Node.js
+COPY --from=builder --chown=nextjs:nodejs /app/lib ./lib
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
+
 # Cambiamos al usuario no root y exponemos el puerto
 USER nextjs
 EXPOSE 3000
