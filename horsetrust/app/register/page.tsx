@@ -176,93 +176,200 @@ export default function RegisterPage() {
     }
   };
 
+  const styleLines = "h-[1px] w-16 from-transparent to-[rgb(var(--color-gold))]"
+  const stylesInputs = "w-full px-4 py-4 bg-[rgb(var(--color-cream)/0.05)] border border-[rgb(var(--color-cream)/0.2)] text-[rgb(var(--color-cream))] placeholder-[rgb(var(--color-cream)/0.3)] font-light text-sm focus:outline-none focus:border-[rgb(var(--color-gold))] transition-all duration-300"
+  const stylesError = "text-[rgb(var(--color-terracotta))] text-xs font-light mt-1"
+  const stylesLabel = "block text-xs tracking-[0.125em] uppercase text-[rgb(var(--color-cream)/0.6)] font-medium"
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#000000] p-6">
-      <div className="w-full max-w-md bg-white rounded-[40px] shadow-2xl p-10 border border-slate-300">
-        
-        <header className="mb-8 text-center">
-          <div className="flex justify-center mb-6">
-            <Image 
-              src="/logo.jpg" 
-              alt="HorseTrust Logo"
-              width={200}
-              height={100}
-              priority
-              className="object-contain"
-            />
-          </div>
-          <h2 className="text-3xl font-bold text-[#3E6259] tracking-tight">Crear Cuenta</h2>
-          <p className="text-[#764134] text-sm font-semibold mt-1">Bienvenido a la comunidad ecuestre</p>
-        </header>
+     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-[rgb(var(--color-gold)/0.5)] to-black p-4 fontMontserrat">
 
-       
-        {errorMsg && (
-          <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded-r-xl flex justify-between items-center animate-in fade-in duration-300">
-            <div>
-              <p className="text-[10px] font-bold text-red-600 uppercase tracking-widest">Error de Registro</p>
-              <p className="text-xs text-red-800 font-medium leading-tight">{errorMsg}</p>
+        <div className="relative w-full max-w-2xl">
+            <div className="flex items-center justify-center gap-3 mb-8">
+                <div className={`${styleLines} bg-gradient-to-r`}></div>
+                <span className="text-[rgb(var(--color-gold))] text-2xl">◆</span>
+                <div className={`${styleLines} bg-gradient-to-l`}></div>
             </div>
-            
-            <button 
-              type="button"
-              onClick={() => onSubmit(getValues())} 
-              className="ml-4 bg-[#764134] text-white text-[10px] font-black px-3 py-2 rounded-lg hover:bg-[#5a3128] transition-all active:scale-95"
-            >
-              REINTENTAR
-            </button>
-          </div>
-        )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-1">
-              <input {...register("first_name")} placeholder="Nombre" className="w-full p-4 bg-white border border-slate-300 rounded-2xl focus:ring-2 focus:ring-[#B5BA72] text-slate-900 outline-none text-sm" />
-              {errors.first_name && <p className="text-red-500 text-[10px] ml-1">{errors.first_name.message}</p>}
+            <div className="bg-black/90 border border-[rgb(var(--color-gold)/0.3)] p-8 sm:p-12 shadow-2xl">
+                
+                <div className="flex justify-center mb-8">
+                    <Image
+                        src="/images/login.jpg"
+                        alt="Horse Trust"
+                        width={260}
+                        height={90}
+                        priority
+                        className="object-contain"
+                    />
+                </div>
+
+                <header className="mb-8 text-center">
+                    <h1 className="fontCormorant text-4xl font-light tracking-wide text-[rgb(var(--color-gold))] uppercase mb-3">
+                        Crear Cuenta
+                    </h1>
+                    <p className="text-sm font-light text-[rgb(var(--color-cream)/0.7)] tracking-wide">
+                        Unite a la comunidad ecuestre
+                    </p>
+                </header>
+
+                {errorMsg && (
+                    <div className="mb-6 p-4 bg-[rgb(var(--color-terracotta)/0.1)] border border-[rgb(var(--color-terracotta)/0.3)] flex justify-between items-start gap-4">
+                        <div className="flex-1">
+                            <p className="text-xs font-medium text-[rgb(var(--color-terracotta))] uppercase tracking-wider mb-1">
+                                Error de Registro
+                            </p>
+                            <p className="text-sm text-[rgb(var(--color-cream)/0.8)] font-light leading-relaxed">
+                                {errorMsg}
+                            </p>
+                        </div>
+                        <button
+                            type="button"
+                            onClick={() => onSubmit(getValues())}
+                            className="px-4 py-2 bg-[rgb(var(--color-terracotta))] text-[rgb(var(--color-cream))] text-xs uppercase tracking-wider hover:bg-[rgb(var(--color-gold))] hover:text-black transition-all duration-300 whitespace-nowrap"
+                        >
+                            Reintentar
+                        </button>
+                    </div>
+                )}
+
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                            <label className={stylesLabel}>
+                                Nombre
+                            </label>
+                            <input
+                                {...register("first_name")}
+                                placeholder="Juan"
+                                className={stylesInputs}
+                            />
+                            {errors.first_name && (
+                                <p className={stylesError}>
+                                    {errors.first_name.message}
+                                </p>
+                            )}
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className={stylesLabel}>
+                                Apellido
+                            </label>
+                            <input
+                                {...register("last_name")}
+                                placeholder="Pérez"
+                                className={stylesInputs}
+                            />
+                            {errors.last_name && (
+                                <p className={stylesError}>
+                                    {errors.last_name.message}
+                                </p>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className={stylesLabel}>
+                            Email
+                        </label>
+                        <input
+                            {...register("email")}
+                            type="email"
+                            placeholder="tu@email.com"
+                            className={stylesInputs}
+                        />
+                        {errors.email && (
+                            <p className={stylesError}>
+                                {errors.email.message}
+                            </p>
+                        )}
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className={stylesLabel}>
+                            Teléfono
+                        </label>
+                        <input
+                            {...register("phone")}
+                            placeholder="+54 9 11 1234-5678"
+                            className={stylesInputs}
+                        />
+                        {errors.phone && (
+                            <p className={stylesError}>
+                                {errors.phone.message}
+                            </p>
+                        )}
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                            <label className={stylesLabel}>
+                                Contraseña
+                            </label>
+                            <input
+                                {...register("password")}
+                                type="password"
+                                placeholder="••••••••"
+                                className={stylesInputs}
+                            />
+                            {errors.password && (
+                                <p className="text-[rgb(var(--color-terracotta))] text-xs font-light mt-1 leading-tight">
+                                    {errors.password.message}
+                                </p>
+                            )}
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className={stylesLabel}>
+                                Confirmar
+                            </label>
+                            <input
+                                {...register("confirmPassword")}
+                                type="password"
+                                placeholder="••••••••"
+                                className={stylesInputs}
+                            />
+                            {errors.confirmPassword && (
+                                <p className={stylesError}>
+                                    {errors.confirmPassword.message}
+                                </p>
+                            )}
+                        </div>
+                    </div>
+
+                    <button
+                        type="submit"
+                        disabled={isLoading}
+                        className={`w-full py-4 text-xs tracking-[0.1875em] uppercase font-medium transition-all duration-300 ${
+                            isLoading 
+                                ? "bg-[rgb(var(--color-cream)/0.2)] text-[rgb(var(--color-cream)/0.5)] cursor-not-allowed" 
+                                : "bg-[rgb(var(--color-gold))] text-black hover:bg-[rgb(var(--color-teal))] hover:text-[rgb(var(--color-cream))]"
+                        }`}
+                    >
+                        {isLoading ? "Cargando..." : "Crear Cuenta"}
+                    </button>
+                </form>
+
+                <footer className="mt-8 pt-6 border-t border-[rgb(var(--color-cream)/0.1)] text-center">
+                    <p className="text-sm text-[rgb(var(--color-cream)/0.6)] font-light">
+                        ¿Ya tenés cuenta?{" "}
+                        <a 
+                            href="/login" 
+                            className="text-[rgb(var(--color-gold))] hover:text-[rgb(var(--color-cream))] transition-colors duration-300 font-medium"
+                        >
+                            Iniciá sesión aquí
+                        </a>
+                    </p>
+                </footer>
             </div>
-            <div className="space-y-1">
-              <input {...register("last_name")} placeholder="Apellido" className="w-full p-4 bg-white border border-slate-300 rounded-2xl focus:ring-2 focus:ring-[#B5BA72] text-slate-900 outline-none text-sm" />
-              {errors.last_name && <p className="text-red-500 text-[10px] ml-1">{errors.last_name.message}</p>}
+
+            <div className="flex items-center justify-center gap-3 mt-8">
+                <div className={`${styleLines} bg-gradient-to-r`}></div>
+                <span className="text-[rgb(var(--color-gold))] text-2xl">◆</span>
+                <div className={`${styleLines} bg-gradient-to-l`}></div>
             </div>
-          </div>
-
-          <div className="space-y-1">
-            <input {...register("email")} type="email" placeholder="Correo electrónico" className="w-full p-4 bg-white border border-slate-300 rounded-2xl focus:ring-2 focus:ring-[#B5BA72] text-slate-900 outline-none text-sm" />
-            {errors.email && <p className="text-red-500 text-[10px] ml-1">{errors.email.message}</p>}
-          </div>
-          
-          <div className="space-y-1">
-            <input {...register("phone")} placeholder="Teléfono" className="w-full p-4 bg-white border border-slate-300 rounded-2xl focus:ring-2 focus:ring-[#B5BA72] text-slate-900 outline-none text-sm" />
-            {errors.phone && <p className="text-red-500 text-[10px] ml-1">{errors.phone.message}</p>}
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-1">
-              <input {...register("password")} type="password" placeholder="Contraseña" className="w-full p-4 bg-white border border-slate-300 rounded-2xl focus:ring-2 focus:ring-[#B5BA72] text-slate-900 outline-none text-sm" />
-              {errors.password && <p className="text-red-500 text-[9px] ml-1 leading-tight">{errors.password.message}</p>}
-            </div>
-            <div className="space-y-1">
-              <input {...register("confirmPassword")} type="password" placeholder="Confirmar" className="w-full p-4 bg-white border border-slate-300 rounded-2xl focus:ring-2 focus:ring-[#B5BA72] text-slate-900 outline-none text-sm" />
-              {errors.confirmPassword && <p className="text-red-500 text-[10px] ml-1">{errors.confirmPassword.message}</p>}
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            disabled={isLoading}
-            className={`w-full py-4 rounded-2xl text-white font-black text-sm tracking-widest transition-all shadow-lg active:scale-95 ${
-              isLoading ? "bg-slate-400" : "bg-[#3E6259] hover:bg-[#2d4741]"
-            }`}
-          >
-            {isLoading ? "CARGANDO..." : "REGISTRARSE"}
-          </button>
-        </form>
-
-        <footer className="mt-8 text-center">
-          <p className="text-xs text-slate-500 font-medium">
-            ¿Ya eres miembro? <a href="/login" className="text-[#764134] font-bold hover:underline">Inicia sesión aquí</a>
-          </p>
-        </footer>
-      </div>
+        </div>
     </div>
   );
 }
