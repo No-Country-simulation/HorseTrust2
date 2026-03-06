@@ -116,20 +116,17 @@ export default function Profile({ user, onUpdate }: ProfileProps) {
 
             <div className="relative max-w-5xl mx-auto px-4 sm:px-6 w-full">
                 
-                {/* Decorative header */}
                 <div className="flex items-center justify-center gap-3 mb-8">
                     <div className={`${styleLines} bg-gradient-to-r`}></div>
                     <span className="text-[rgb(var(--color-gold))] text-2xl">◆</span>
                     <div className={`${styleLines} bg-gradient-to-l`}></div>
                 </div>
 
-                {/* Profile Header */}
                 <div className="bg-gradient-to-br from-[rgb(var(--color-teal)/0.2)] via-[rgb(var(--color-terracota)/0.5)] to-[rgb(var(--color-teal)/0.2)] border border-[rgb(var(--color-gold)/0.3)] p-8 sm:p-12 mb-8">
                     <h1 className="fontCormorant text-4xl sm:text-5xl font-light tracking-wide text-[rgb(var(--color-gold))] uppercase text-center mb-12">
                         Mi Perfil
                     </h1>
 
-                    {/* Avatar Section */}
                     <div className="flex flex-col items-center mb-10">
                         <div className="relative w-32 h-32 sm:w-40 sm:h-40 mb-6 group">
                             <Image
@@ -155,9 +152,7 @@ export default function Profile({ user, onUpdate }: ProfileProps) {
                         )}
                     </div>
 
-                    {/* Form Fields */}
                     <div className="fontMontserrat space-y-8">
-                        {/* Name Row */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label className={styleLabel}>
@@ -198,7 +193,6 @@ export default function Profile({ user, onUpdate }: ProfileProps) {
                             </div>
                         </div>
 
-                        {/* Email */}
                         <div>
                             <label className={styleLabel}>
                                 Email
@@ -218,7 +212,6 @@ export default function Profile({ user, onUpdate }: ProfileProps) {
                             )}
                         </div>
 
-                        {/* Phone */}
                         <div>
                             <label className={styleLabel}>
                                 Teléfono
@@ -239,7 +232,6 @@ export default function Profile({ user, onUpdate }: ProfileProps) {
                         </div>
                     </div>
 
-                    {/* Action Buttons */}
                     <div className="mt-12 pt-8 border-t border-[rgb(var(--color-cream)/0.1)]">
                         {isEditing ? (
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -275,12 +267,10 @@ export default function Profile({ user, onUpdate }: ProfileProps) {
                     </div>
                 </div>
 
-                {/* Decorative divider */}
                 <div className="flex items-center justify-center gap-3 my-12">
                     <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[rgb(var(--color-gold))] to-transparent"></div>
                 </div>
 
-                {/* My Horses Section */}
                 <div className="mt-16">
                     <div className="text-center mb-12">
                         <div className="text-xs tracking-[0.25em] text-[rgb(var(--color-gold))] mb-4 uppercase font-medium">
