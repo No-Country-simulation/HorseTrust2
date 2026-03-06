@@ -1,8 +1,7 @@
 services:
   # Next.js App
   app:
-    build:
-      context: horsetrust/
+    image: ghcr.io/no-country-simulation/horsetrust2/horsetrust:latest
     container_name: horsetrust-app
     restart: unless-stopped
     environment:
