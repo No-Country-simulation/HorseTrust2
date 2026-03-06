@@ -19,6 +19,8 @@ async function getHorse(id: string) {
   if (!res.ok) return null
 
   const data = await res.json()
+  console.log(data)
+
   return data.data
 }
 

@@ -154,9 +154,6 @@ export default function ItemCardGallery({ horse }: Props) {
                     $ {horse.price || "Consultar precio"}
                 </span>
     
-                <span className="text-xs fontMontserrat text-[rgb(var(--color-cream)/0.4)]">
-                    Buenos Aires
-                </span>
             </div>
         </div>
         

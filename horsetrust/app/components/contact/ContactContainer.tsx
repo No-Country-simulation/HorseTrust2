@@ -10,7 +10,7 @@ export default function ContactContainer(){
                     <div className="fontMontserrat text-xs tracking-[0.375em] text-[rgb(var(--color-gold))] mb-6 uppercase font-normal opacity-0 animate-fade-in-up" style={{animationDelay: "0.3s", animationFillMode: "forwards"}}>
                         — Estamos para Ayudarte —
                     </div>
-                    <h1 className="fontCormorant text-6xl lg:text-7xl xl:text-8xl font-light tracking-[0.125em] mb-8 leading-tight text-[rgb(var(--color-cream))] uppercase opacity-0 animate-fade-in-up hero-title" style={{animationDelay: "0.6s", animationFillMode: "forwards"}}>
+                    <h1 className="fontCormorant text-[rgb(var(--color-cream))] px-4 text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-[0.125em] leading-tight uppercase opacity-0 animate-fade-in-up hero-title" style={{animationDelay: "0.6s", animationFillMode: "forwards"}}>
                         Conectemos
                     </h1>
                     <p className="fontMontserrat text-lg font-light tracking-wide max-w-2xl mx-auto leading-relaxed text-[rgb(var(--color-cream)/0.8)] opacity-0 animate-fade-in-up" style={{animationDelay: "0.9s", animationFillMode: "forwards"}} >

@@ -24,7 +24,7 @@ export default function Footer(){
                     <div className={stylesTitles}>
                         Plataforma
                     </div>
-                    <ul className="space-y-3 list-none">
+                    <ul className="space-y-2 list-none">
                         <li>
                             <Link href="/galery" className={stylesItems}>
                                 Explorar Caballos
@@ -54,7 +54,7 @@ export default function Footer(){
                     <div className={stylesTitles}>
                         Vendedores
                     </div>
-                    <ul className="space-y-3 list-none">
+                    <ul className="space-y-2 list-none">
                         <li><a href="#" className={stylesItems}>Publicar Caballo</a></li>
                         <li><a href="#" className={stylesItems}>Contacto directo</a></li>
                         <li><a href="#" className={stylesItems}>Guía del Vendedor</a></li>
@@ -65,7 +65,7 @@ export default function Footer(){
                     <div className={stylesTitles}>
                         Contacto
                     </div>
-                    <ul className="space-y-3 list-none">
+                    <ul className="space-y-2 list-none">
                         <li><a href="mailto:info@elite-equestrian.com" className={stylesItems}>info@horse-trust.com</a></li>
                         <li><a href="tel:+123456789" className={stylesItems}>+1 234 567 89</a></li>
                     </ul>

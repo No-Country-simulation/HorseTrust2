@@ -38,13 +38,6 @@ export default function Page() {
     setUser(updatedUser);
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-[rgb(var(--color-terracota))] fontMontserrat">Cargando...</p>
-      </div>
-    );
-  }
 
   if (!user) {
     return (

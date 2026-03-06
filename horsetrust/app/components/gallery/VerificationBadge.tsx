@@ -20,7 +20,7 @@ const verificationConfig: Record<
     className: "bg-yellow-100/70 text-yellow-700",
   },
   verified: {
-    label: "Verificado",
+    label: "",
     icon: CheckCircle,
     className: "bg-green-100/70 text-green-700",
   },

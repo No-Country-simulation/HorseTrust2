@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { useChatStore } from "@/store/chatStore";
 import { useSession } from "@/store/authSession";
 import { useEffect } from "react";
@@ -42,7 +41,6 @@ export default function NavbarChatBadge({ stylesNavItems }: NavbarChatBadgeProps
         }`}
         title="Mensajes"
       >
-        <IoChatbubbleEllipsesOutline className="text-base" />
         <span>Chat</span>
         {totalUnread > 0 && (
           <span className="absolute -top-2 -right-3 min-w-[16px] h-[16px] bg-red-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center px-0.5">

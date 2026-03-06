@@ -27,6 +27,9 @@ export default function HorseOwnerPanel({ horse, documents }: Props) {
     breed: horse.breed || "",
     discipline: horse.discipline || "",
     price: horse.price ?? "",
+    color: horse.color || "",
+    height: horse.height ?? "",
+    description: horse.description || "",
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -49,6 +52,9 @@ export default function HorseOwnerPanel({ horse, documents }: Props) {
     if (form.breed !== horse.breed) updates.breed = form.breed
     if (form.discipline && form.discipline !== horse.discipline) updates.discipline = form.discipline
     if (form.price !== "" && Number(form.price) !== horse.price) updates.price = Number(form.price)
+    if (form.color !== horse.color) updates.color = form.color
+    if (form.height !== "" && Number(form.height) !== horse.height) updates.height = Number(form.height)
+    if (form.description !== horse.description) updates.description = form.description
 
     if (Object.keys(updates).length === 0) {
       setError("No hay cambios para guardar")
@@ -184,6 +190,29 @@ export default function HorseOwnerPanel({ horse, documents }: Props) {
               />
             </div>
 
+            <div>
+                <div className={labelClass}>Color</div>
+                <input
+                    name="color"
+                    value={form.color}
+                    onChange={handleChange}
+                    className={inputClass}
+                    style={{ color: "rgb(var(--color-cream))" }}
+                />
+            </div>
+
+            <div>
+                <div className={labelClass}>Altura (cm)</div>
+                <input
+                    name="height"
+                    type="number"
+                    value={form.height}
+                    onChange={handleChange}
+                    className={inputClass}
+                    style={{ color: "rgb(var(--color-cream))" }}
+                />
+            </div>
+
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <div className={labelClass}>Disciplina</div>
@@ -200,16 +229,31 @@ export default function HorseOwnerPanel({ horse, documents }: Props) {
                 </select>
               </div>
               <div>
-                <div className={labelClass}>Precio</div>
-                <input
-                  name="price"
-                  type="number"
-                  value={form.price}
-                  onChange={handleChange}
-                  className={inputClass}
-                  style={{ color: "rgb(var(--color-cream))" }}
-                />
+                    <div className={labelClass}>Precio</div>
+                    <input
+                    name="price"
+                    type="number"
+                    value={form.price}
+                    onChange={handleChange}
+                    className={inputClass}
+                    style={{ color: "rgb(var(--color-cream))" }}
+                    />
               </div>
+              
+
+            </div>
+            <div>
+                <div className={labelClass}>Descripción</div>
+                <textarea
+                    name="description"
+                    value={form.description}
+                    onChange={(e) =>
+                    setForm((prev) => ({ ...prev, description: e.target.value }))
+                    }
+                    rows={4}
+                    className={`${inputClass} resize-none`}
+                    style={{ color: "rgb(var(--color-cream))" }}
+                />
             </div>
 
             <div className="fontMontserrat text-xs text-yellow-500/80 p-3 border border-yellow-500/20 bg-yellow-500/5">

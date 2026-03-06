@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ContainerCardGallery from "../gallery/ContainerCardGallery";
+import { LiaHorseHeadSolid } from "react-icons/lia";
 
 interface User {
     id: string;
@@ -102,23 +103,44 @@ export default function Profile({ user, onUpdate }: ProfileProps) {
         setIsEditing(false);
     };
 
-    return (
-        <>
-            <div className="flex flex-col gap-8 w-full">
-                <div className="max-w-5xl mx-auto px-4 py-6 sm:p-10 bg-gradient-to-br from-[rgb(var(--color-cream))] to-white rounded-2xl shadow-2xl border border-[rgb(var(--color-gold))/20]">
-                    <h2 className="text-3xl fontCormorant text-[rgb(var(--color-terracota))] mb-8 text-center">
-                        Mi Perfil
-                    </h2>
+    const styleLines = "h-[1px] w-16 from-transparent to-[rgb(var(--color-gold))]"
+    const styleLabel = "block text-xs tracking-[0.125em] uppercase text-[rgb(var(--color-gold))] mb-3 font-medium"
+    const styleInput = "w-full px-4 py-4 bg-[rgb(var(--color-cream)/0.05)] border border-[rgb(var(--color-cream)/0.2)] text-[rgb(var(--color-cream))] placeholder-[rgb(var(--color-cream)/0.3)] font-light text-sm focus:outline-none focus:border-[rgb(var(--color-gold))] transition-all duration-300"
+    const styleDivError = "px-4 py-4 bg-black/40 border border-[rgb(var(--color-cream)/0.1)] text-[rgb(var(--color-cream))] font-light text-sm"
+    const styleBtn = "px-10 py-4 bg-[rgb(var(--color-gold))] text-black fontMontserrat text-xs uppercase tracking-[0.125em] hover:bg-[rgb(var(--color-teal))] hover:text-[rgb(var(--color-cream))] transition-all duration-300 font-medium"
+    
 
-                    <div className="flex flex-col items-center mb-8">
-                        <div className="relative w-24 h-24 sm:w-32 sm:h-32 mb-6">
+    return (
+    <>
+        <div className="flex flex-col w-full min-h-screen bg-black pb-12">
+
+            <div className="relative max-w-5xl mx-auto px-4 sm:px-6 w-full">
+                
+                <div className="flex items-center justify-center gap-3 mb-8">
+                    <div className={`${styleLines} bg-gradient-to-r`}></div>
+                    <span className="text-[rgb(var(--color-gold))] text-2xl">◆</span>
+                    <div className={`${styleLines} bg-gradient-to-l`}></div>
+                </div>
+
+                <div className="bg-gradient-to-br from-[rgb(var(--color-teal)/0.2)] via-[rgb(var(--color-terracota)/0.5)] to-[rgb(var(--color-teal)/0.2)] border border-[rgb(var(--color-gold)/0.3)] p-8 sm:p-12 mb-8">
+                    <h1 className="fontCormorant text-4xl sm:text-5xl font-light tracking-wide text-[rgb(var(--color-gold))] uppercase text-center mb-12">
+                        Mi Perfil
+                    </h1>
+
+                    <div className="flex flex-col items-center mb-10">
+                        <div className="relative w-32 h-32 sm:w-40 sm:h-40 mb-6 group">
                             <Image
-                                src={formData.avatar_url || '/images/logo.png'}
+                                src={formData.avatar_url || '/images/logoh.png'}
                                 alt="Avatar"
                                 fill
-                                className={`rounded-full object-cover border-4 border-[rgb(var(--color-gold))] shadow-lg ${isEditing ? 'cursor-pointer' : ''}`}
+                                className={`object-cover border-4 border-[rgb(var(--color-gold))] ${isEditing ? 'cursor-pointer hover:border-[rgb(var(--color-cream))] transition-all duration-300' : ''}`}
                                 onClick={isEditing ? () => fileInputRef.current?.click() : undefined}
                             />
+                            {isEditing && (
+                                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <span className="text-[rgb(var(--color-cream))] text-xs uppercase tracking-wider">Cambiar</span>
+                                </div>
+                            )}
                         </div>
                         {isEditing && (
                             <input
@@ -130,10 +152,10 @@ export default function Profile({ user, onUpdate }: ProfileProps) {
                         )}
                     </div>
 
-                    <div className="space-y-6">
+                    <div className="fontMontserrat space-y-8">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label className="block text-lg fontMontserrat text-[rgb(var(--color-terracota))] mb-2">
+                                <label className={styleLabel}>
                                     Nombre
                                 </label>
                                 {isEditing ? (
@@ -142,17 +164,17 @@ export default function Profile({ user, onUpdate }: ProfileProps) {
                                         name="first_name"
                                         value={formData.first_name}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border-2 border-[rgb(var(--color-teal))] rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-gold))] text-lg bg-white shadow-sm"
+                                        className={styleInput}
                                     />
                                 ) : (
-                                    <p className="px-4 py-3 bg-white rounded-lg text-lg text-[rgb(var(--color-terracota))] shadow-sm border border-gray-200">
+                                    <div className={styleDivError}>
                                         {formData.first_name || 'No especificado'}
-                                    </p>
+                                    </div>
                                 )}
                             </div>
 
                             <div>
-                                <label className="block text-lg fontMontserrat text-[rgb(var(--color-terracota))] mb-2">
+                                <label className={styleLabel}>
                                     Apellido
                                 </label>
                                 {isEditing ? (
@@ -161,18 +183,18 @@ export default function Profile({ user, onUpdate }: ProfileProps) {
                                         name="last_name"
                                         value={formData.last_name}
                                         onChange={handleChange}
-                                        className="w-full px-4 py-3 border-2 border-[rgb(var(--color-teal))] rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-gold))] text-lg bg-white shadow-sm"
+                                        className={styleInput}
                                     />
                                 ) : (
-                                    <p className="px-4 py-3 bg-white rounded-lg text-lg text-[rgb(var(--color-terracota))] shadow-sm border border-gray-200">
+                                    <div className={styleDivError}>
                                         {formData.last_name || 'No especificado'}
-                                    </p>
+                                    </div>
                                 )}
                             </div>
                         </div>
 
                         <div>
-                            <label className="block text-lg fontMontserrat text-[rgb(var(--color-terracota))] mb-2">
+                            <label className={styleLabel}>
                                 Email
                             </label>
                             {isEditing ? (
@@ -181,17 +203,17 @@ export default function Profile({ user, onUpdate }: ProfileProps) {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border-2 border-[rgb(var(--color-teal))] rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-gold))] text-lg bg-white shadow-sm"
+                                    className={styleInput}
                                 />
                             ) : (
-                                <p className="px-4 py-3 bg-white rounded-lg text-lg text-[rgb(var(--color-terracota))] shadow-sm border border-gray-200">
+                                <div className={styleDivError}>
                                     {formData.email}
-                                </p>
+                                </div>
                             )}
                         </div>
 
                         <div>
-                            <label className="block text-lg fontMontserrat text-[rgb(var(--color-terracota))] mb-2">
+                            <label className={styleLabel}>
                                 Teléfono
                             </label>
                             {isEditing ? (
@@ -200,43 +222,43 @@ export default function Profile({ user, onUpdate }: ProfileProps) {
                                     name="phone"
                                     value={formData.phone}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border-2 border-[rgb(var(--color-teal))] rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-gold))] text-lg bg-white shadow-sm"
+                                    className={styleInput}
                                 />
                             ) : (
-                                <p className="px-4 py-3 bg-white rounded-lg text-lg text-[rgb(var(--color-terracota))] shadow-sm border border-gray-200">
+                                <div className={styleDivError}>
                                     {formData.phone || 'No especificado'}
-                                </p>
+                                </div>
                             )}
                         </div>
                     </div>
 
-                    <div className="flex flex-col items-center mt-10 pt-6">
+                    <div className="mt-12 pt-8 border-t border-[rgb(var(--color-cream)/0.1)]">
                         {isEditing ? (
-                            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 w-full">
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <button
                                     onClick={handleSave}
-                                    className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-[rgb(var(--color-teal))] text-[rgb(var(--color-teal))] fontMontserrat text-lg uppercase tracking-wide rounded-xl hover:bg-[rgb(var(--color-teal))] hover:text-white transition-all duration-300"
+                                    className={styleBtn}
                                 >
-                                    Guardar
+                                    Guardar Cambios
                                 </button>
                                 <button
                                     onClick={handleCancel}
-                                    className="w-full sm:w-auto px-8 py-4 bg-[rgb(var(--color-gold))] text-black fontMontserrat text-lg uppercase tracking-wide rounded-xl hover:bg-[rgb(var(--color-terracota))] hover:text-white transition-all duration-300"
+                                    className="px-10 py-4 bg-transparent border border-[rgb(var(--color-cream)/0.3)] text-[rgb(var(--color-cream))] fontMontserrat text-xs uppercase tracking-[0.125em] hover:border-[rgb(var(--color-gold))] hover:text-[rgb(var(--color-gold))] transition-all duration-300 font-medium"
                                 >
                                     Cancelar
                                 </button>
                             </div>
                         ) : (
-                            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 w-full">
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <button
                                     onClick={() => setIsEditing(true)}
-                                    className="w-full sm:w-auto px-8 py-4 bg-[rgb(var(--color-teal))] text-white fontMontserrat text-lg uppercase tracking-wide rounded-xl hover:bg-[rgb(var(--color-gold))] hover:text-black transition-all duration-300"
+                                    className="px-10 py-4 bg-transparent border border-[rgb(var(--color-gold))] text-[rgb(var(--color-gold))] fontMontserrat text-xs uppercase tracking-[0.125em] hover:bg-[rgb(var(--color-gold))] hover:text-black transition-all duration-300 font-medium"
                                 >
                                     Editar Perfil
                                 </button>
 
                                 <Link href="/horses/new">
-                                    <button className="w-full sm:w-auto px-8 py-4 bg-[rgb(var(--color-gold))] text-black fontMontserrat text-lg uppercase tracking-wide rounded-xl hover:bg-[rgb(var(--color-terracota))] hover:text-white transition-all duration-300 mt-3 sm:mt-0">
+                                    <button className={styleBtn}>
                                         Registrar Caballo
                                     </button>
                                 </Link>
@@ -245,23 +267,48 @@ export default function Profile({ user, onUpdate }: ProfileProps) {
                     </div>
                 </div>
 
-                {/* Mis caballos - usar componente de galería */}
-                <div className="max-w-7xl mx-auto mt-10 px-4 sm:px-6">
-                    <h3 className="fontCormorant text-4xl sm:text-5xl font-light tracking-[0.125em] text-[rgb(var(--color-terracota))] mb-6 text-center leading-tight uppercase">
-                        Mis Caballos
-                    </h3>
+                <div className="flex items-center justify-center gap-3 my-12">
+                    <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[rgb(var(--color-gold))] to-transparent"></div>
+                </div>
+
+                <div className="mt-16">
+                    <div className="text-center mb-12">
+                        <div className="text-xs tracking-[0.25em] text-[rgb(var(--color-gold))] mb-4 uppercase font-medium">
+                            Mi Colección
+                        </div>
+                        <h2 className="fontCormorant text-4xl sm:text-5xl font-light tracking-wide text-[rgb(var(--color-cream))] uppercase">
+                            Mis Caballos
+                        </h2>
+                    </div>
 
                     {loadingHorses ? (
-                        <p className="text-center text-[rgb(var(--color-terracota))]">Cargando caballos...</p>
+                        <div className="text-center py-20">
+                            <div className="inline-block w-12 h-12 border-4 border-[rgb(var(--color-gold)/0.3)] border-t-[rgb(var(--color-gold))] rounded-full animate-spin"></div>
+                            <p className="text-[rgb(var(--color-cream)/0.7)] mt-4 text-sm uppercase tracking-wider">Cargando caballos...</p>
+                        </div>
                     ) : myHorses.length === 0 ? (
-                        <div className="text-center text-[rgb(var(--color-terracota))]">
-                            No tenés caballos registrados. <Link href="/horses/new" className="text-[rgb(var(--color-teal))] font-semibold">Registrá uno</Link>
+                        <div className="fontMontserrat text-center py-20 bg-[rgb(var(--color-terracota)/0.2)] border border-[rgb(var(--color-teal)/0.3)] p-12">
+                            <div className="mb-4 flex items-center justify-center">
+                                <LiaHorseHeadSolid className="text-8xl text-[rgb(var(--color-gold)/0.9)]">🐴</LiaHorseHeadSolid>
+                            </div>
+                            <p className="text-[rgb(var(--color-cream))] text-lg mb-2 font-light">
+                                No tenés caballos registrados
+                            </p>
+                            <p className="text-[rgb(var(--color-cream)/0.6)] text-sm mb-6">
+                                Comenzá a construir tu colección ecuestre
+                            </p>
+                            <Link href="/horses/new">
+                                <button className="px-8 py-3 bg-[rgb(var(--color-gold))] text-black text-xs uppercase tracking-[0.125em] hover:bg-[rgb(var(--color-teal))] hover:text-[rgb(var(--color-cream))] transition-all duration-300 font-medium">
+                                    Registrar mi Primer Caballo
+                                </button>
+                            </Link>
                         </div>
                     ) : (
                         <ContainerCardGallery horses={myHorses} />
                     )}
                 </div>
             </div>
-        </>
-    );
+        </div>
+    </>
+);
 }

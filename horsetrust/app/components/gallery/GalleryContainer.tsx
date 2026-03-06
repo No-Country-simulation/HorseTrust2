@@ -2,6 +2,8 @@
 
 import ContainerCardGallery from "./ContainerCardGallery"
 import FiltersGallery from "./FiltersGallery"
+import { useState, useMemo } from "react"
+
 
 interface Props {
   initialHorses: any[]
@@ -13,6 +15,59 @@ export default function GalleryContainer({ initialHorses }: Props) {
         animationDelay: `${delay}s`,
         animationFillMode: "forwards",
     })
+
+    const [search, setSearch] = useState("")
+    const [category, setCategory] = useState("Todos")
+    const [sort, setSort] = useState("recientes")
+
+    const categories = useMemo(() => {
+    const unique = new Set(initialHorses.map((h) => h.discipline))
+        return ["Todos", ...unique]
+    }, [initialHorses])
+
+    const filteredHorses = useMemo(() => {
+    return initialHorses
+        .filter((h) => {
+        if (category === "Todos") return true
+        return h.discipline === category
+        })
+        .filter((h) => {
+        const text = search.toLowerCase()
+
+        return (
+            h.name.toLowerCase().includes(text) ||
+            h.breed.toLowerCase().includes(text)
+        )
+        })
+    }, [initialHorses, category, search])
+
+    const sortedHorses = useMemo(() => {
+    const list = [...filteredHorses]
+
+    switch (sort) {
+
+        case "precio-asc":
+        return list.sort((a, b) => (a.price ?? 0) - (b.price ?? 0))
+
+        case "precio-desc":
+        return list.sort((a, b) => (b.price ?? 0) - (a.price ?? 0))
+
+        case "nombre":
+        return list.sort((a, b) =>
+            a.name.localeCompare(b.name)
+        )
+
+        case "recientes":
+        default:
+        return list.sort((a, b) =>
+            new Date(b.created_at).getTime() -
+            new Date(a.created_at).getTime()
+        )
+    }
+
+    }, [filteredHorses, sort])
+
+
 
     return (
         <>
@@ -31,8 +86,18 @@ export default function GalleryContainer({ initialHorses }: Props) {
                     </p>
                 </div>
             </section>
-            <FiltersGallery />
-            <ContainerCardGallery horses={initialHorses} />
+            <FiltersGallery
+                categories={categories}
+                selectedCategory={category}
+                setSelectedCategory={setCategory}
+                search={search}
+                setSearch={setSearch}
+                sort={sort}
+                setSort={setSort}
+                total={sortedHorses.length}
+            />
+
+            <ContainerCardGallery horses={sortedHorses} />
         </>
     )
 }

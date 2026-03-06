@@ -44,6 +44,7 @@ export const GET = withErrorHandler(async (
         price: true,
         color:true,
         description:true,
+        height:true,
         sales:{
             id: true,
             price: true,
@@ -163,8 +164,8 @@ export const PATCH = withErrorHandler(async (
       if (error) return error
     }
 
-    type UpdatableField = "name" | "age" | "sex" | "breed" | "discipline" | "price" | "sale_status"
-    const allowedFields: UpdatableField[] = ["name", "age", "sex", "breed", "discipline", "price", "sale_status"]
+    type UpdatableField = "name" | "age" | "sex" | "breed" | "discipline" | "price" | "sale_status" |"color" | "height" | "description"
+    const allowedFields: UpdatableField[] = ["name", "age", "sex", "breed", "discipline", "price", "sale_status", "color", "height", "description"]
     const updates: Pick<Partial<Horse>, UpdatableField> = {}
 
     for (const field of allowedFields) {

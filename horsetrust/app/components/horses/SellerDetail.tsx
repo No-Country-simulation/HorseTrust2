@@ -62,10 +62,6 @@ export default function SellerDetail({ seller }: Props) {
                         <Check className="text-[rgb(var(--color-gold))]" width={15} />
                         <span>Teléfono Confirmado</span>
                     </div>
-                    <div className={styleSpan}>
-                        <Check className="text-[rgb(var(--color-gold))]" width={15} />
-                        <span>Ubicación Verificada</span>
-                    </div>
                 </div>
             </div>
         </div>

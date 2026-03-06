@@ -2,20 +2,23 @@
 
 import { useState } from "react"
 
-export default function FiltersGallery(){
-    const [selectedCategory, setSelectedCategory] = useState("Todos")
+interface Props {
+  categories: string[]
+  selectedCategory: string
+  setSelectedCategory: (v: string) => void
+  search: string
+  setSearch: (v: string) => void
+  sort: string
+  setSort: (v: string) => void
+  total: number
+}
+
+
+export default function FiltersGallery({ categories, selectedCategory, setSelectedCategory, search, setSearch, sort, setSort, total }: Props){
     
     const stylesCategoryButton = "filter-btn px-6 py-3 bg-transparent border border-[rgb(var(--color-cream)/0.3)] text-[rgb(var(--color-cream))] text-xs tracking-[0.125em] uppercase transition-all duration-300 hover:border-[rgb(var(--color-gold))] hover:text-[rgb(var(--color-gold))] data-[active=true]:bg-[rgb(var(--color-gold))] data-[active=true]:text-black data-[active=true]:border-[rgb(var(--color-gold))]"
     
-    const categories = [
-        "Todos",
-        "Premium",
-        "Deportivos",
-        "Recreativos",
-        "Jóvenes",
-        "Adultos",
-        "Cría"
-    ]
+    
 
     return (
         <section className="fontMontserrat py-12 px-4 sm:px-8 lg:px-16 bg-gradient-to-b from-black to-[rgb(var(--color-teal)/0.1)] border-b border-[rgb(var(--color-gold)/0.1)]">
@@ -23,11 +26,14 @@ export default function FiltersGallery(){
                 {/* Search Bar */}
                 <div className="pb-8 w-full flex justify-center">
                     <div className="relative w-full max-w-2xl px-0 sm:px-0">
-                        <input 
+                        <input
                             type="text" 
-                            placeholder="Buscar por nombre, raza, ubicación..."
+                            placeholder="Buscar por nombre..." 
                             className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-[rgb(var(--color-cream)/0.1)] border border-[rgb(var(--color-cream)/0.2)] text-[rgb(var(--color-cream))] placeholder-[rgb(var(--color-cream)/0.4)] font-light text-sm focus:outline-none focus:border-[rgb(var(--color-gold))] transition-all duration-300"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
                         />
+
                         <button className="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 text-[rgb(var(--color-gold))] text-xl">
                             ⌕
                         </button>
@@ -73,7 +79,7 @@ export default function FiltersGallery(){
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-[rgb(var(--color-cream))]/60 text-xs">
                     <div className="flex items-center gap-3 w-full sm:w-auto">
                         <span className="uppercase tracking-wider whitespace-nowrap">Ordenar:</span>
-                        <select className="flex-1 sm:flex-none bg-transparent border border-[rgb(var(--color-cream))]/20 px-3 sm:px-4 py-2 text-[rgb(var(--color-cream))] cursor-pointer focus:outline-none focus:border-[rgb(var(--color-gold))] transition-all duration-300 text-xs">
+                        <select value={sort} onChange={(e) => setSort(e.target.value)} className="flex-1 sm:flex-none bg-transparent border border-[rgb(var(--color-cream))]/20 px-3 sm:px-4 py-2 text-[rgb(var(--color-cream))] cursor-pointer focus:outline-none focus:border-[rgb(var(--color-gold))] transition-all duration-300 text-xs">
                             <option value="recientes" className="bg-black">Más Recientes</option>
                             <option value="precio-asc" className="bg-black">Precio: Menor a Mayor</option>
                             <option value="precio-desc" className="bg-black">Precio: Mayor a Menor</option>
@@ -81,7 +87,7 @@ export default function FiltersGallery(){
                         </select>
                     </div>
                     <div className="uppercase tracking-wider text-center">
-                        <span className="text-[rgb(var(--color-gold))]">48</span> Caballos Encontrados
+                        <span className="text-[rgb(var(--color-gold))]">{total}</span> Caballos Encontrados
                     </div>
                 </div>
             </div>
