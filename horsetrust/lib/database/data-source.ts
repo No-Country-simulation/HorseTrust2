@@ -12,20 +12,8 @@ import { Review } from "./entities/Review";
 export const AppDataSource = new DataSource({
   type: "postgres",
   url: process.env.DATABASE_URL,
-  ssl:
-    process.env.NODE_ENV === "production"
-      ? { rejectUnauthorized: false }
-      : false,
+  ssl: false,
   synchronize: true,
   logging: true,
-  entities: [
-    User,
-    Address,
-    Horse,
-    Document,
-    Chat,
-    Message,
-    Sale,
-    Review,
-  ],
+  entities: [User, Address, Horse, Document, Chat, Message, Sale, Review],
 });
