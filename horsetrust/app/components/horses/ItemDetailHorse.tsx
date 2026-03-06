@@ -43,7 +43,7 @@ export default function ItemDetailHorse({ horse }: Props){
                 </div>
                 <div>
                     <div className={stylesTitleItem}>Ubicación</div>
-                    <div className={stylesValueItem}>{horse.owner.address || "Desconocida"}</div>
+                    <div className={stylesValueItem}>A consultar</div>
                 </div>
                 <div>
                     <div className={stylesTitleItem}>Precio</div>
