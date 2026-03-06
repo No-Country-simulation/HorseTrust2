@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 export async function register() {
   // Solo ejecutar en el runtime de Node.js (no en Edge)
   if (process.env.NEXT_RUNTIME === "nodejs") {
@@ -27,7 +29,9 @@ export async function register() {
         });
 
         await repo.save(admin);
-        console.log("✅ Admin seed: usuario admin@admin.com creado con rol admin");
+        console.log(
+          "✅ Admin seed: usuario admin@admin.com creado con rol admin",
+        );
       } else {
         console.log("ℹ️ Admin seed: usuario admin@admin ya existe, omitiendo");
       }
