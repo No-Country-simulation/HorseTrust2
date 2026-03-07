@@ -254,3 +254,4 @@ Si tienes preguntas o encuentras algún problema:
 ## Licencia
 
 Al contribuir a HorseTrust, aceptas que tus contribuciones serán licenciadas bajo la misma licencia del proyecto.
+
