@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
-    "@lottiefiles/dotlottie-react": "^0.18.4",
+    "@lottiefiles/dotlottie-react": "^0.18.5",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.3.1",
     "jose": "^6.2.1",
