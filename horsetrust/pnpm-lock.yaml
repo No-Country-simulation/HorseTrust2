@@ -12,8 +12,8 @@ importers:
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.71.2(react@19.2.4))
       '@lottiefiles/dotlottie-react':
-        specifier: ^0.18.4
-        version: 0.18.4(react@19.2.4)
+        specifier: ^0.18.5
+        version: 0.18.5(react@19.2.4)
       bcrypt:
         specifier: ^6.0.0
         version: 6.0.0
@@ -567,13 +567,13 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@lottiefiles/dotlottie-react@0.18.4':
-    resolution: {integrity: sha512-tuMjFM968TQOqkoaK7QbkQGxxBRQaH4VMxH43guJFwuPkH8q2MJbcglBizbQbAqWLM9c9adaHuUKocsS99MhBw==}
+  '@lottiefiles/dotlottie-react@0.18.5':
+    resolution: {integrity: sha512-Hw4thvVOHJDbXbtEF4X3/P0C2xaTGdQxOQnlTdcw+pcLwTgsb2O7+sW8TpUJz2fAgzGAEUpW8O5KmN+eibiRaw==}
     peerDependencies:
       react: ^17 || ^18 || ^19
 
-  '@lottiefiles/dotlottie-web@0.66.0':
-    resolution: {integrity: sha512-aFTwmvP3iN4Lu4VyuKMqHlc6mMDdg0wtekY6FEzcv+Miv7inFW6wz0ekY5xHqhDctVOrQIWvJX+ShmevFZUjDg==}
+  '@lottiefiles/dotlottie-web@0.66.1':
+    resolution: {integrity: sha512-DhXVlWpnTLmlrDamqSJR/PsMFTFBhe4a04MRojAsgtk3FmEEbIluWA6qbYAKbjvj8o6Nju8f+R9fhOxL+iWd1w==}
 
   '@napi-rs/wasm-runtime@0.2.12':
     resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
@@ -3076,12 +3076,12 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@lottiefiles/dotlottie-react@0.18.4(react@19.2.4)':
+  '@lottiefiles/dotlottie-react@0.18.5(react@19.2.4)':
     dependencies:
-      '@lottiefiles/dotlottie-web': 0.66.0
+      '@lottiefiles/dotlottie-web': 0.66.1
       react: 19.2.4
 
-  '@lottiefiles/dotlottie-web@0.66.0': {}
+  '@lottiefiles/dotlottie-web@0.66.1': {}
 
   '@napi-rs/wasm-runtime@0.2.12':
     dependencies:
